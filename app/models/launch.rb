@@ -1,0 +1,2 @@
+class Launch < ApplicationRecord
+end
