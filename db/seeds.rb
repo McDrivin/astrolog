@@ -4,11 +4,11 @@ require "open-uri"
 def fetch_api(end_point)
   all_data = []
   base_url = "https://lldev.thespacedevs.com/2.2.0/#{end_point}"
+  # count = JSON.parse(URI.open(url).read)["count"]
   2.times do |index|
     url = "#{base_url}?offset=#{index}"
     puts "Fetching from url: #{url}"
-    response = URI.open(url).read
-    data = JSON.parse(response)
+    data = JSON.parse(URI.open(url).read)
     all_data.concat(data["results"])
   end
   return all_data
@@ -35,8 +35,8 @@ end
 astronauts.each do |astronaut|
   Astronaut.create(
     name: astronaut["name"],
-    status: astronaut["status"],
-    agency: astronaut["agency"],
+    status: astronaut["status"]["name"],
+    agency: astronaut["agency"]["name"],
     profile_image: astronaut["profle_image"]
   )
 end
