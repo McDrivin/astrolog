@@ -1,6 +1,6 @@
-class CreateAstonauts < ActiveRecord::Migration[7.0]
+class CreateAstronauts < ActiveRecord::Migration[7.0]
   def change
-    create_table :astonauts do |t|
+    create_table :astronauts do |t|
       t.string :name
       t.string :status
       t.string :agency

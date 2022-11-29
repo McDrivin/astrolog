@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AstonautTest < ActiveSupport::TestCase
+class LaunchesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
