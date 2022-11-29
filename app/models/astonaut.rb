@@ -1,0 +1,2 @@
+class Astonaut < ApplicationRecord
+end
