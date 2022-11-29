@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  get 'launches', to: 'pages#launches'
-  get 'events', to: 'pages#events'
-  get 'agencies', to: 'pages#agencies'
-  get 'astronauts', to: 'pages#astronauts'
+  resources :events, only: %i[index show]
+  resources :agencies, only: %i[index show]
+  resources :astronauts, only: %i[index show]
+  resources :launches, only: %i[index show]
 end
