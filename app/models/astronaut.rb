@@ -1,0 +1,2 @@
+class Astronaut < ApplicationRecord
+end
