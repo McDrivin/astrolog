@@ -3,15 +3,21 @@
   <ul class="list-group">
     <% @astronauts.each do |astronaut| %>
       <div class="card-product mb-3">
-        <%= image_tag astronaut.feature_image %>
+        <%= image_tag astronaut.profile_image.nil? ? "placeholder-image.png" : astronaut.logo_url %>
         <div class="card-product-infos">
           <h2><%= astronaut.name %></h2>
-        #   <p><%= astronaut.date.to_date %> | <%= astronaut.astronaut_type %></p>
-          <p><%= astronaut.location %></p>
-        #   <h5>00 : 00 : 00 : 00</h5>
+          <p><%= astronaut.status %></p>
+          <h6><%= astronaut.agency %></h6>
           <%= link_to "More info", astronaut_path(astronaut), class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
   </ul>
 </div>
+<%#
+    t.string "name"
+    t.string "status"
+    t.string "agency"
+    t.string "profile_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false %>
