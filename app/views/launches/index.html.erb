@@ -1,7 +1,17 @@
-<h1>All launches</h1>
-
-<ul>
-  <% @launches.each do |launch|%>
-  <li><%= launch.name %><%= launch %><%= launch.window_start %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1> Launches </h1>
+  <ul class="list-group">
+    <% @launches.each do |launch| %>
+      <div class="card-product mb-3">
+        <%= image_tag launch.feature_image %>
+        <div class="card-product-infos">
+          <h2><%= launch.name %></h2>
+          <p><%= launch.date.to_date %> | <%= launch.launch_type %></p>
+          <p><%= launch.location %></p>
+          <h5>00 : 00 : 00 : 00</h5>
+          <%= link_to "More info", launch_path(launch, class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+</div>
