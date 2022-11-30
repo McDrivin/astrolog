@@ -1,17 +1,25 @@
 <div class="container">
-  <h1> "Agencies and Companies in the space industry." </h1>
+  <h1> Agencies and Companies in the space industry </h1>
   <ul class="list-group">
     <% @agencies.each do |agency| %>
       <div class="card-product mb-3">
-        <%= image_tag agency.feature_image %>
+        <%= image_tag agency.logo_url.nil? ? "placeholder-image.png" : agency.logo_url %>
         <div class="card-product-infos">
           <h2><%= agency.name %></h2>
-        #   <p><%= agency.date.to_date %> | <%= agency.agency_type %></p>
-          <p><%= agency.location %></p>
-        #   <h5>00 : 00 : 00 : 00</h5>
+          <h6><%= agency.country_code %></h6>
           <%= link_to "More info", agency_path(agency), class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
   </ul>
 </div>
+   <%# t.string "name"
+    t.string "country_code"
+    t.text "description"
+    t.string "founding_year"
+    t.string "spacecraft"
+    t.string "image_url"
+    t.string "logo_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "agency_type" %>
