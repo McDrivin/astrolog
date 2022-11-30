@@ -16,8 +16,8 @@ end
 
 agencies = fetch_api("agencies")
 astronauts = fetch_api("astronaut")
-launches = fetch_api("launch")
-events = fetch_api("event")
+launches = fetch_api("launch/upcoming")
+events = fetch_api("event/upcoming")
 
 agencies.each do |agency|
   Agency.create(

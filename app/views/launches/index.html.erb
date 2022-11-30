@@ -3,13 +3,11 @@
   <ul class="list-group">
     <% @launches.each do |launch| %>
       <div class="card-product mb-3">
-        <%= image_tag launch.feature_image %>
         <div class="card-product-infos">
           <h2><%= launch.name %></h2>
-          <p><%= launch.date.to_date %> | <%= launch.launch_type %></p>
-          <p><%= launch.location %></p>
-          <h5>00 : 00 : 00 : 00</h5>
-          <%= link_to "More info", launch_path(launch, class: "btn btn-primary" %>
+          <p><%= launch.agenc %></p>
+          <h5 data-controller="countdown" data-countdown-date-value="<%= launch.window_start.to_s %>"></h5>
+          <%= link_to "More info", launch_path(launch), class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
