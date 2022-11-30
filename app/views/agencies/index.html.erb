@@ -1,1 +1,17 @@
-<h1> hi </h1>
+<div class="container">
+  <h1> "Agencies and Companies in the space industry." </h1>
+  <ul class="list-group">
+    <% @agencies.each do |agency| %>
+      <div class="card-product mb-3">
+        <%= image_tag agency.feature_image %>
+        <div class="card-product-infos">
+          <h2><%= agency.name %></h2>
+        #   <p><%= agency.date.to_date %> | <%= agency.agency_type %></p>
+          <p><%= agency.location %></p>
+        #   <h5>00 : 00 : 00 : 00</h5>
+          <%= link_to "More info", agency_path(agency), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+</div>
