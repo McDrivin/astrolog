@@ -1,1 +1,7 @@
-<h1> hi </h1>
+<h1>All launches</h1>
+
+<ul>
+  <% @launches.each do |launch|%>
+  <li><%= launch.name %><%= launch %><%= launch.window_start %></li>
+  <% end %>
+</ul>
