@@ -1,14 +1,15 @@
 <div class="container">
-  <h1> Events </h1>
+  <h1> Upcoming Events </h1>
   <ul class="list-group">
     <% @events.each do |event| %>
-      <div class="card-product mb-3">
+      <div class="event-card-product mb-3">
         <%= image_tag event.feature_image %>
-        <div class="card-product-infos">
+        <div class="event-card-product-infos">
           <h2><%= event.name %></h2>
-          <p><%= event.date.to_date %> | <%= event.event_type %></p>
-          <h6 class="mt-2"><%= event.location %></h6>
-          <%= link_to "More info", event_path(event), class: "btn btn-primary" %>
+          <p><%= event.date.strftime('%B %e %Y') %> | <%= event.event_type %></p>
+          <h6 class="mt-2"><%= event.location.nil? ? "N/A" : event.location %></h6>
+          <h6 data-controller="countdown" data-countdown-date-value="<%= event.date.to_s %>"></h6>
+          <%= link_to "More info", event_path(event), class: "btn btn-primary mt-2" %>
         </div>
       </div>
     <% end %>
