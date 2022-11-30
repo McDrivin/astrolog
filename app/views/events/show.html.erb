@@ -1,0 +1,7 @@
+<div class="container">
+  <h1><%= @event.name %></h1>
+  <%= image_tag @event.feature_image %>
+  <p><%= @event.description %></p>
+  <%= link_to "News", "#{@event.news_url}", class: "btn btn-success" %>
+  <%= link_to "Video", "#{@event.video_url}", class: "btn btn-success" %>
+</div>
