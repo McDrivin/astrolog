@@ -1,0 +1,17 @@
+<div class="container">
+  <h1><%= @topic.title %></h1>
+  <p><%= @topic.description %></p>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= post.content %>
+        <%= link_to "Replies", topic_post_path(post) %>
+      </li>
+    <% end %>
+  </ul>
+  <h2>Create a post</h2>
+  <%= simple_form_for [@topic, @post] do |f| %>
+    <%= f.input :content %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
