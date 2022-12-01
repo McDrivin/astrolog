@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   resources :launches, only: %i[index show]
 
   resources :topics do
-    resources :posts do
-      resources :messages
-    end
+    resources :posts
+    resources :topic_members, only: [:create]
+  end
+  resources :topic_members, only: [:destroy]
+  resources :posts do
+    resources :messages
   end
 end

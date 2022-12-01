@@ -5,6 +5,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    @current_user_topic_member = @topic.find_topic_member(current_user)
     @posts = Post.where(topic_id: params[:id])
     @post = Post.new
   end
@@ -15,6 +16,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.topic_members.build(role: 'creator', user: current_user)
     if @topic.save
       redirect_to topics_path
     else

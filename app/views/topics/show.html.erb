@@ -1,11 +1,22 @@
 <div class="container">
   <h1><%= @topic.title %></h1>
   <p><%= @topic.description %></p>
+  <div class="d-flex align-items-center">
+    <h2>Members</h2>
+    <% if @current_user_topic_member %>
+      <%= link_to "Leave topic", topic_member_path(@current_user_topic_member), data: {turbo_method: :delete} %>
+    <% else %>
+      <%= link_to "Join topic", topic_topic_members_path(@topic), data: {turbo_method: :post} %>
+    <% end %>
+  </div>
+  <% @topic.topic_members.each do |member| %>
+    <%= render member %>
+  <% end %>
   <ul>
     <% @posts.each do |post| %>
       <li>
         <%= post.content %>
-        <%= link_to "Replies", topic_post_path(post) %>
+        <%= link_to "Replies", post_path(post) %>
       </li>
     <% end %>
   </ul>
