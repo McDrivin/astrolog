@@ -5,4 +5,9 @@
     <li><%= message.content %></li>
   <% end %>
   </ul>
+  <h2>Add a reply</h2>
+  <%= simple_form_for [@post, @message] do |f| %>
+    <%= f.input :content %>
+    <%= f.submit "Send" %>
+  <% end %>
 </div>

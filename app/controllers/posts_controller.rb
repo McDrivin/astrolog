@@ -2,8 +2,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @message = Message.new
     @messages = Message.where(post_id: params[:id])
-    # raise
   end
 
   def create
