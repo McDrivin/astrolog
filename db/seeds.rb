@@ -70,3 +70,9 @@ events.each do |event|
     event_type: event["type"]["name"]
   )
 end
+
+# url = "https://api.nasa.gov/planetary/apod"
+# user_serialized = URI.open(url).read
+# user = JSON.parse(user_serialized)
+
+# https://api.nasa.gov/planetary/apod?api_key=7HqeRQcFyXO8QGn1PI3pzyHul3sLnKISOc1fAo5g
