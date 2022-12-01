@@ -1,5 +1,6 @@
 require "json"
 require "open-uri"
+require "faker"
 
 def fetch_api(end_point)
   all_data = []
@@ -37,7 +38,7 @@ astronauts.each do |astronaut|
     name: astronaut["name"],
     status: astronaut["status"]["name"],
     agency: astronaut["agency"]["name"],
-    profile_image: astronaut["profle_image"]
+    profile_image: astronaut["profile_image"]
   )
 end
 
@@ -70,3 +71,37 @@ events.each do |event|
     event_type: event["type"]["name"]
   )
 end
+
+# ------------SEEDS FOR COMMUNITY-------------------
+puts "Start seeding community"
+emails = ["test@test.com", "user@gmail.com"]
+2.times do |i|
+  User.create(
+    username: Faker::Internet.username,
+    email: emails[i],
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    password: 'secret'
+  )
+end
+
+5.times do
+  Topic.create(title: Faker::Space.company, description: Faker::Lorem.sentence(word_count: 3))
+end
+
+20.times do
+  Post.create(
+    content: Faker::Lorem.paragraph(sentence_count: 3),
+    user: User.find(rand(1..2)),
+    topic: Topic.find(rand(1..5))
+  )
+end
+
+50.times do
+  Message.create(
+    content: Faker::Lorem.paragraph(sentence_count: 3),
+    post: Post.find(rand(1..20)),
+    user: User.find(rand(1..2))
+  )
+end
+puts "End seeding community"
