@@ -15,10 +15,18 @@
 #   return all_data
 # end
 
+<<<<<<< HEAD
+agencies = fetch_api("agencies")
+astronauts = fetch_api("astronaut")
+launches = fetch_api("launch/upcoming")
+events = fetch_api("event/upcoming")
+articles = fetch_api2("articles")
+=======
 # agencies = fetch_api("agencies")
 # astronauts = fetch_api("astronaut")
 # launches = fetch_api("launch/upcoming")
 # events = fetch_api("event/upcoming")
+>>>>>>> master
 
 # agencies.each do |agency|
 #   Agency.create(
@@ -72,6 +80,52 @@
 #   )
 # end
 
+<<<<<<< HEAD
+# def fetch_api2(end_point)
+#   all_data = []
+#   base_url = "https://api.spaceflightnewsapi.net/v3/articles#{end_point}"
+#   # count = JSON.parse(URI.open(url).read)["count"]
+#   2.times do |index|
+#     url = "#{base_url}?offset=#{index}"
+#     puts "Fetching from url: #{url}"
+#     data = JSON.parse(URI.open(url).read)
+#     all_data.concat(data["results"])
+#   end
+#   return all_data
+# end
+
+# articles.each do |article|
+#     Article.create(
+#       id: article["id"]
+#       title: article["title"]
+#       url: article["url"]
+#       imageUrl: article["imageUrl"]
+#       newsSite: article["newsSite"]
+#       summary: article["summary"]
+#       publishedAt: article["publishedAt"]
+#       updatedAt: article["updatedAt"]
+#       featured: article["featured"]
+#       launches: article["id"]["provider"]
+#     )
+
+
+
+
+
+# {
+#   "id": 17457,
+#   "title": "US Vice President, French President Visit NASA Headquarters",
+#   "url": "http://www.nasa.gov/press-release/us-vice-president-french-president-visit-nasa-headquarters",
+#   "imageUrl": "https://www.nasa.gov/sites/default/files/thumbnails/image/harrisnasahq.jpg?itok=TgOdUyko",
+#   "newsSite": "NASA",
+#   "summary": "NASA Administrator Bill Nelson welcomed Vice President Kamala Harris and French President Emmanuel Macron to NASA Headquarters in Washington Wednesday.",
+#   "publishedAt": "2022-11-30T20:25:00.000Z",
+#   "updatedAt": "2022-11-30T20:25:04.432Z",
+#   "featured": false,
+#   "launches": [],
+#   "events": []
+# },
+=======
 # ------------SEEDS FOR COMMUNITY-------------------
 puts "Start seeding community"
 emails = ["test@test.com", "user@gmail.com"]
@@ -116,3 +170,4 @@ puts "End seeding community"
 # user = JSON.parse(user_serialized)
 
 # https://api.nasa.gov/planetary/apod?api_key=7HqeRQcFyXO8QGn1PI3pzyHul3sLnKISOc1fAo5g
+>>>>>>> master

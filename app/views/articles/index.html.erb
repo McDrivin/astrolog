@@ -1,0 +1,16 @@
+<div class="container">
+  <h1> News Articles about Space </h1>
+  <ul class="list-group">
+    <% @articles.each do |article| %>
+      <div class="card-product mb-3">
+        <%= image_tag article.logo_url.nil? ? "placeholder-image.png" : article.logo_url %>
+        <div class="card-product-infos">
+          <h2><%= article.name %></h2>
+          <h6><%= article.country_code %></h6>
+          <%= link_to "More info", article_path(article), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+</div>
+   <%# t.string "name"
