@@ -14,3 +14,10 @@ http://%=%20@nasa_info[
 <img src="<%= @nasa_info["url"] %>" />
 <% end %>
 <p><%= @nasa_info["explanation"] %></p>
+
+<ul>
+  <p> There are currently <%= @in_space["people"].size %> humans in space👾 </p>
+    <% @in_space["people"].each do |space| %>
+    <li> <%= space["name"] %> </li>
+  <% end %>
+</ul>

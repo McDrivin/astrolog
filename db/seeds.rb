@@ -15,18 +15,10 @@
 #   return all_data
 # end
 
-<<<<<<< HEAD
-agencies = fetch_api("agencies")
-astronauts = fetch_api("astronaut")
-launches = fetch_api("launch/upcoming")
-events = fetch_api("event/upcoming")
-articles = fetch_api2("articles")
-=======
 # agencies = fetch_api("agencies")
 # astronauts = fetch_api("astronaut")
 # launches = fetch_api("launch/upcoming")
 # events = fetch_api("event/upcoming")
->>>>>>> master
 
 # agencies.each do |agency|
 #   Agency.create(
@@ -80,7 +72,6 @@ articles = fetch_api2("articles")
 #   )
 # end
 
-<<<<<<< HEAD
 # def fetch_api2(end_point)
 #   all_data = []
 #   base_url = "https://api.spaceflightnewsapi.net/v3/articles#{end_point}"
@@ -109,9 +100,6 @@ articles = fetch_api2("articles")
 #     )
 
 
-
-
-
 # {
 #   "id": 17457,
 #   "title": "US Vice President, French President Visit NASA Headquarters",
@@ -125,7 +113,6 @@ articles = fetch_api2("articles")
 #   "launches": [],
 #   "events": []
 # },
-=======
 # ------------SEEDS FOR COMMUNITY-------------------
 puts "Start seeding community"
 emails = ["test@test.com", "user@gmail.com"]
@@ -164,10 +151,6 @@ Topic.all.each do |topic|
 end
 puts "End seeding community"
 
-
-# url = "https://api.nasa.gov/planetary/apod"
-# user_serialized = URI.open(url).read
-# user = JSON.parse(user_serialized)
-
-# https://api.nasa.gov/planetary/apod?api_key=7HqeRQcFyXO8QGn1PI3pzyHul3sLnKISOc1fAo5g
->>>>>>> master
+url = "http://api.open-notify.org/astros.json"
+user_serialized = URI.open(url).read
+@user = JSON.parse(user_serialized)
