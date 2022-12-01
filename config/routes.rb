@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   resources :agencies, only: %i[index show]
   resources :astronauts, only: %i[index show]
   resources :launches, only: %i[index show]
+
+  resources :topics do
+    resources :posts do
+      resources :messages
+    end
+  end
 end

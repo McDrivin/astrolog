@@ -3,7 +3,7 @@
   <ul class="list-group">
     <% @astronauts.each do |astronaut| %>
       <div class="card-product mb-3">
-        <%= image_tag astronaut.profile_image.nil? ? "placeholder-image.png" : astronaut.logo_url %>
+        <%= image_tag astronaut.profile_image.nil? ? "placeholder-image.png" : astronaut.profile_image %>
         <div class="card-product-infos">
           <h2><%= astronaut.name %></h2>
           <p><%= astronaut.status %></p>
@@ -14,10 +14,3 @@
     <% end %>
   </ul>
 </div>
-<%#
-    t.string "name"
-    t.string "status"
-    t.string "agency"
-    t.string "profile_image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false %>

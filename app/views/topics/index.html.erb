@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Topics</h1>
+  <ul class="list-group">
+    <% @topics.each do |topic| %>
+      <li class="list-group-item">
+        <%= link_to topic.title, topic_path(topic) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
