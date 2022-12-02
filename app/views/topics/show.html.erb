@@ -15,14 +15,15 @@
   <ul>
     <% @posts.each do |post| %>
       <li>
-        <%= post.content %>
+        <%= post.title %>
         <%= link_to "Replies", post_path(post) %>
       </li>
     <% end %>
   </ul>
   <h2>Create a post</h2>
   <%= simple_form_for [@topic, @post] do |f| %>
-    <%= f.input :content %>
-    <%= f.button :submit %>
+    <%= f.input :title %>
+    <%= f.rich_text_area :content%>
+    <%= f.button :submit, class: "btn btn-primary mt-3" %>
   <% end %>
 </div>
