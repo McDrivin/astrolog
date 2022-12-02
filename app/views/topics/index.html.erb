@@ -1,11 +1,15 @@
 <div class="container">
-  <h1>Topics</h1>
-  <ul class="list-group">
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <h1>Topics</h1>
+    <%= link_to "New topic", new_topic_path, class: 'btn btn-primary' %>
+  </div>
+  <hr>
+  <div class="row g-2">
     <% @topics.each do |topic| %>
-      <li class="list-group-item">
-        <%= link_to topic.title, topic_path(topic) %>
-      </li>
+      <div class="col-6 topic-card p-3">
+        <%= link_to topic.title, topic_path(topic), class: "h5 text-decoration-none" %>
+        <p><%= topic.description %></p>
+      </div>
     <% end %>
-  </ul>
-  <%= link_to "New topic", new_topic_path, class: 'btn btn-primary' %>
+  </div>
 </div>
