@@ -3,12 +3,6 @@ class LaunchesController < ApplicationController
 
   def index
     @launches = Launch.all
-    @markers = @launches.geocoded.map do |launch|
-      {
-        lat: launch.pad_lat,
-        lng: launch.pad_lng
-      }
-    end
   end
 
   def show
