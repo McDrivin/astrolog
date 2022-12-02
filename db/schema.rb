@@ -27,6 +27,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_044601) do
     t.string "agency_type"
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.string "imageUrl"
+    t.datetime "newsSite"
+    t.datetime "summary"
+    t.decimal "publishedAt"
+    t.string "updatedAt"
+    t.string "featured"
+    t.string "launches"
+  end
+
   create_table "astronauts", force: :cascade do |t|
     t.string "name"
     t.string "status"
