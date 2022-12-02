@@ -43,7 +43,7 @@ astronauts.each do |astronaut|
 end
 
 launches.each do |launch|
-  Launch.create(
+  Launch.create!(
     name: launch["name"],
     status: launch["status"]["name"],
     status_desc: launch["status"]["description"],
