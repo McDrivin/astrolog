@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex justify-content-between align-items-center mt-3">
     <h1><%= @topic.title %></h1>
-    <%= link_to "New Post", new_post_path, class: "btn btn-primary"  %>
+    <%# link_to "New Post", new_post_path, class: "btn btn-primary"  %>
   </div>
   <p><%= @topic.description %></p>
   <div class="d-flex justify-content-between align-items-center mt-3">
@@ -19,8 +19,14 @@
     <% @posts.each do |post| %>
       <li>
         <%= post.title %>
-        <%= link_to "Replies", post_path(post) %>
+        <%= link_to "", post_path(post),  class: "fa-solid fa-reply" %>
       </li>
     <% end %>
   </ul>
+  <h2>Create a post</h2>
+  <%= simple_form_for [@topic, @post] do |f| %>
+    <%= f.input :title %>
+    <%= f.rich_text_area :content %>
+    <%= f.button :submit, class: "btn btn-primary mt-3" %>
+  <% end %>
 </div>

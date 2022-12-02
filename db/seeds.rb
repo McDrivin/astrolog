@@ -136,30 +136,30 @@ emails = ["test@test.com", "user@gmail.com"]
   )
 end
 
-5.times do |i|
-  Topic.create(title: "This is topic #{i + 1}", description: Faker::Lorem.sentence(word_count: 3))
-end
+# 5.times do |i|
+#   Topic.create(title: "This is topic #{i + 1}", description: Faker::Lorem.sentence(word_count: 3))
+# end
 
-Topic.all.each do |topic|
-  10.times do |j|
-    Post.create(
-      title: "This is the post #{j + 1} of topic #{topic.id}",
-      content: "This is content of post #{j + 1} of topic #{topic.id}",
-      user: User.find(rand(1..2)),
-      topic: topic
-    )
-  end
+# Topic.all.each do |topic|
+#   10.times do |j|
+#     Post.create(
+#       title: "This is the post #{j + 1} of topic #{topic.id}",
+#       content: "This is content of post #{j + 1} of topic #{topic.id}",
+#       user: User.find(rand(1..2)),
+#       topic: topic
+#     )
+#   end
 
-  Post.all.each do |post|
-    5.times do |j|
-      Message.create(
-        content: "This is message #{j + 1} of post #{post.id}",
-        post: post,
-        user: User.find(rand(1..2))
-      )
-    end
-  end
-end
+#   Post.all.each do |post|
+#     5.times do |j|
+#       Message.create(
+#         content: "This is message #{j + 1} of post #{post.id}",
+#         post: post,
+#         user: User.find(rand(1..2))
+#       )
+#     end
+#   end
+# end
 puts "End seeding community"
 
 url = "http://api.open-notify.org/astros.json"
