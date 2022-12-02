@@ -2,6 +2,15 @@ require "json"
 require "open-uri"
 require "faker"
 
+User.destroy_all
+Agency.destroy_all
+Astronaut.destroy_all
+Launch.destroy_all
+Event.destroy_all
+Topic.destroy_all
+Post.destroy_all
+Message.destroy_all
+
 def fetch_api(end_point)
   all_data = []
   base_url = "https://lldev.thespacedevs.com/2.2.0/#{end_point}"
