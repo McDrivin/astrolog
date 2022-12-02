@@ -1,23 +1,23 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1517976547714-720226b864c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);">
-  <div class="container">
-    <h1><strong> Check out Astrolog and keep track of space!</strong></h1>
-    <a class="btn btn-flat" href="#">Check it out</a>
+<div class="container">
+  <div class="card mb-3" style="width: 18rem;">
+    <h1><%= @nasa_info["title"] %></h1>
+    <% if @media_type_is_video %>
+    http://%=%20@nasa_info[
+    <% else %>
+    <img class="card-img-top" src="<%= @nasa_info["url"] %>" alt="Card image cap" />
+    <% end %>
+    <p><%= @nasa_info["explanation"] %></p>
+    </div>
+
+
+  <div class='card' style="width: 24rem;">
+    <div class="card-header">
+      There are currently <%= @in_space["people"].size %> humans in space👾
+      </div>
+    <ul class="list-group list-group-flush">
+        <% @in_space["people"].each do |space| %>
+        <li class="list-group-item"> <%= space["name"] %> </li>
+      <% end %>
+    </ul>
   </div>
 </div>
-
-
-
-<h1><%= @nasa_info["title"] %></h1>
-<% if @media_type_is_video %>
-http://%=%20@nasa_info[
-<% else %>
-<img src="<%= @nasa_info["url"] %>" />
-<% end %>
-<p><%= @nasa_info["explanation"] %></p>
-
-<ul>
-  <p> There are currently <%= @in_space["people"].size %> humans in space👾 </p>
-    <% @in_space["people"].each do |space| %>
-    <li> <%= space["name"] %> </li>
-  <% end %>
-</ul>
