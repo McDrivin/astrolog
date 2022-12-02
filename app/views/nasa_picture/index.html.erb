@@ -1,16 +1,16 @@
-<div class="container">
-  <div class="card mb-3" style="width: 18rem;">
-    <h1><%= @nasa_info["title"] %></h1>
+<div class="container-fluid">
+  <div class="card mb-3 mt-3 mx-3">
     <% if @media_type_is_video %>
     http://%=%20@nasa_info[
     <% else %>
     <img class="card-img-top" src="<%= @nasa_info["url"] %>" alt="Card image cap" />
     <% end %>
+    <h1 class="text-center"><%= @nasa_info["title"] %></h1>
     <p><%= @nasa_info["explanation"] %></p>
     </div>
 
 
-  <div class='card' style="width: 24rem;">
+  <div class='card mx-3' style="width: 24rem;">
     <div class="card-header">
       There are currently <%= @in_space["people"].size %> humans in space👾
       </div>
