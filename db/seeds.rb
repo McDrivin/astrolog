@@ -113,6 +113,7 @@
 #   "launches": [],
 #   "events": []
 # },
+
 # ------------SEEDS FOR COMMUNITY-------------------
 puts "Start seeding community"
 emails = ["test@test.com", "user@gmail.com"]
@@ -133,7 +134,8 @@ end
 Topic.all.each do |topic|
   10.times do |j|
     Post.create(
-      content: "This is post #{j + 1} of topic #{topic.id}",
+      title: "This is the post #{j + 1} of topic #{topic.id}",
+      content: "This is content of post #{j + 1} of topic #{topic.id}",
       user: User.find(rand(1..2)),
       topic: topic
     )
