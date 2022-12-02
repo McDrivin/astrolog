@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # resources :articles, only: %i[index show]
 
   resources :topics do
-    resources :posts
+    # resources :posts
     resources :topic_members, only: [:create]
   end
   resources :topic_members, only: [:destroy]
