@@ -7,7 +7,6 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @current_user_topic_member = @topic.find_topic_member(current_user)
     @posts = Post.where(topic_id: params[:id])
-    @post = Post.new
   end
 
   def new
