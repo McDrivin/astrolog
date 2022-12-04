@@ -2,15 +2,6 @@ require "json"
 require "open-uri"
 require "faker"
 
-User.destroy_all
-Agency.destroy_all
-Astronaut.destroy_all
-Launch.destroy_all
-Event.destroy_all
-Topic.destroy_all
-Post.destroy_all
-Message.destroy_all
-
 def fetch_api(end_point)
   all_data = []
   base_url = "https://lldev.thespacedevs.com/2.2.0/#{end_point}"
@@ -136,30 +127,32 @@ emails = ["test@test.com", "user@gmail.com"]
   )
 end
 
-# 5.times do |i|
-#   Topic.create(title: "This is topic #{i + 1}", description: Faker::Lorem.sentence(word_count: 3))
-# end
+5.times do |i|
+  topic = Topic.create(title: "This is topic #{i + 1}", description: Faker::Lorem.sentence(word_count: 3))
+  topic.topic_members.create(role: 'creator', user: User.find(rand(1..2)))
+  # topic.save
+end
 
-# Topic.all.each do |topic|
-#   10.times do |j|
-#     Post.create(
-#       title: "This is the post #{j + 1} of topic #{topic.id}",
-#       content: "This is content of post #{j + 1} of topic #{topic.id}",
-#       user: User.find(rand(1..2)),
-#       topic: topic
-#     )
-#   end
+Topic.all.each do |topic|
+  10.times do |j|
+    Post.create(
+      title: "This is the post #{j + 1} of topic #{topic.id}",
+      content: "This is content of post #{j + 1} of topic #{topic.id}",
+      user: User.find(rand(1..2)),
+      topic: topic
+    )
+  end
 
-#   Post.all.each do |post|
-#     5.times do |j|
-#       Message.create(
-#         content: "This is message #{j + 1} of post #{post.id}",
-#         post: post,
-#         user: User.find(rand(1..2))
-#       )
-#     end
-#   end
-# end
+  Post.all.each do |post|
+    5.times do |j|
+      Message.create(
+        content: "This is message #{j + 1} of post #{post.id}",
+        post: post,
+        user: User.find(rand(1..2))
+      )
+    end
+  end
+end
 puts "End seeding community"
 
 url = "http://api.open-notify.org/astros.json"

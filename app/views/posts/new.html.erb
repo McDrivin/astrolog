@@ -1,0 +1,8 @@
+<div class="container mt-3">
+  <h2>New discussion</h2>
+  <%= simple_form_for [@topic, @post] do |f| %>
+    <%= f.input :title %>
+    <%= f.rich_text_area :content %>
+    <%= f.button :submit, class: "btn btn-primary mt-3" %>
+  <% end %>
+</div>

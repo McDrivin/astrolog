@@ -1,0 +1,26 @@
+.post, .post-title, .add-reply {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.post-body {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.post-user {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.post-user img {
+  width: 20%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.post-date p {
+  font-size: 12px;
+  opacity: 0.6;
+}

@@ -5,28 +5,25 @@
   </div>
   <p><%= @topic.description %></p>
   <div class="d-flex justify-content-between align-items-center mt-3">
-    <h2>Members</h2>
-    <% if @current_user_topic_member %>
-      <%= link_to "Leave topic", topic_member_path(@current_user_topic_member), data: {turbo_method: :delete}, class: "btn btn-warning" %>
+    <p class="m-0 fw-bold">Members: <%= @topic.topic_members.count %></p>
+    <% if !@current_user_topic_member.nil? %>
+      <% if @current_user_topic_member.role == 'member' %>
+        <%= link_to "Leave topic", topic_member_path(@current_user_topic_member), data: {turbo_method: :delete}, class: "btn btn-warning" %>
+      <% else %>
+        <%= link_to "Delete topic", topic_path(@topic), data: {turbo_method: :delete}, class: "btn btn-danger" %>
+      <% end %>
     <% else %>
       <%= link_to "Join topic", topic_topic_members_path(@topic), data: {turbo_method: :post}, class: "btn btn-primary" %>
     <% end %>
   </div>
-  <% @topic.topic_members.each do |member| %>
-    <%= render member %>
-  <% end %>
-  <ul>
+  <ul class="list-group">
+    <li class="list-group-item mt-2 rounded-5"><%= link_to "Start new discussion", new_topic_post_path(@topic), class: "text-decoration-none" %></li>
     <% @posts.each do |post| %>
-      <li>
-        <%= post.title %>
-        <%= link_to "", post_path(post),  class: "fa-solid fa-reply" %>
+      <li class="list-group-item mt-2 rounded-5">
+        <%= link_to post_path(post), class: "text-decoration-none" do %>
+          <h5 class="m-0"><%= post.title %></h5>
+        <% end %>
       </li>
     <% end %>
   </ul>
-  <h2>Create a post</h2>
-  <%= simple_form_for [@topic, @post] do |f| %>
-    <%= f.input :title %>
-    <%= f.rich_text_area :content %>
-    <%= f.button :submit, class: "btn btn-primary mt-3" %>
-  <% end %>
 </div>
