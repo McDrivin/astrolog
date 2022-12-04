@@ -1,6 +1,6 @@
 <div class="container">
   <div class="d-flex justify-content-between align-items-center mt-3">
-    <h1>Topics</h1>
+    <h2 class="m-0">All Topics</h2>
     <%= link_to "New topic", new_topic_path, class: 'btn btn-primary' %>
   </div>
   <hr>
@@ -9,6 +9,28 @@
       <div class="col-6 topic-card p-3">
         <%= link_to topic.title, topic_path(topic), class: "h5 text-decoration-none" %>
         <p><%= topic.description %></p>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <h2>My Interests</h2>
+  <hr>
+  <div class="row g-2">
+    <% @my_interests.each do |tm| %>
+      <div class="col-6 topic-card p-3">
+        <%= link_to Topic.find(tm.topic_id).title, topic_path(Topic.find(tm.topic_id)), class: "h5 text-decoration-none" %>
+        <p><%= Topic.find(tm.topic_id).description %></p>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <h2>My topics</h2>
+  <hr>
+  <div class="row g-2">
+    <% @my_topics.each do |tm| %>
+      <div class="col-6 topic-card p-3">
+        <%= link_to Topic.find(tm.topic_id).title, topic_path(Topic.find(tm.topic_id)), class: "h5 text-decoration-none" %>
+        <p><%= Topic.find(tm.topic_id).description %></p>
       </div>
     <% end %>
   </div>
