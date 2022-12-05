@@ -1,5 +1,7 @@
 <div class="container">
-  <h1> Upcoming Events </h1>
+  <hr>
+    <h1 class="fw-bold text-center">UPCOMING EVENTS</h1>
+  <hr>
   <ul class="list-group">
     <% @events.each do |event| %>
       <div class="wide-card mb-3">
@@ -14,4 +16,7 @@
       </div>
     <% end %>
   </ul>
+</div>
+<div class="container mt-3">
+  <%= paginate @events, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center" %>
 </div>
