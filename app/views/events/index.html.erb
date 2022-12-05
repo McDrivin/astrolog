@@ -2,9 +2,9 @@
   <h1> Upcoming Events </h1>
   <ul class="list-group">
     <% @events.each do |event| %>
-      <div class="event-card-product mb-3">
+      <div class="wide-card mb-3">
         <%= image_tag event.feature_image %>
-        <div class="event-card-product-infos">
+        <div class="wide-card-infos">
           <h2><%= event.name %></h2>
           <p><%= event.date.strftime('%B %e %Y') %> | <%= event.event_type %></p>
           <h6 class="mt-2"><%= event.location.nil? ? "N/A" : event.location %></h6>
