@@ -1,16 +1,25 @@
-<div class="container">
-  <h1> Astronauts </h1>
-  <ul class="list-group">
+<div class="container text-center">
+  <hr>
+  <h1 class="fw-bold">ASTRONAUTS</h1>
+  <hr>
+  <div class="row g-3 justify-content-between">
     <% @astronauts.each do |astronaut| %>
-      <div class="card-product mb-3">
-        <%= image_tag astronaut.profile_image.nil? ? "placeholder-image.png" : astronaut.profile_image %>
-        <div class="card-product-infos">
-          <h2><%= astronaut.name %></h2>
-          <p><%= astronaut.status %></p>
-          <h6><%= astronaut.agency %></h6>
-          <%= link_to "More info", astronaut_path(astronaut), class: "btn btn-primary" %>
+      <div class="col-3">
+        <div class="card small-card">
+          <div class="card-img-top overflow-hidden small-card-img">
+            <%= image_tag astronaut.profile_image.nil? ? "placeholder-image.png" : astronaut.profile_image %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-truncate"><%= astronaut.name %></h5>
+            <p class="card-text"><%= astronaut.status %></p>
+            <p class="card-text text-truncate"><%= astronaut.agency %></p>
+            <%= link_to "More info", astronaut_path(astronaut), class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     <% end %>
-  </ul>
+  </div>
+</div>
+<div class="container mt-3">
+  <%= paginate @astronauts, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center" %>
 </div>

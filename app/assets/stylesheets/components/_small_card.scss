@@ -13,5 +13,6 @@
 }
 
 .small-card-img img {
-  width: 200px;
+  width: 100%;
+  object-fit: cover;
 }
