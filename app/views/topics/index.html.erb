@@ -6,9 +6,11 @@
   <hr>
   <div class="row g-2">
     <% @topics.each do |topic| %>
-      <div class="col-6 topic-card p-3">
-        <%= link_to topic.title, topic_path(topic), class: "h5 text-decoration-none" %>
-        <p><%= topic.description %></p>
+      <div class="col-6">
+        <div class="topic-card p-3">
+          <%= link_to topic.title, topic_path(topic), class: "h5 text-decoration-none" %>
+          <p><%= topic.description %></p>
+        </div>
       </div>
     <% end %>
   </div>
@@ -17,9 +19,11 @@
   <hr>
   <div class="row g-2">
     <% @my_interests.each do |tm| %>
-      <div class="col-6 topic-card p-3">
-        <%= link_to Topic.find(tm.topic_id).title, topic_path(Topic.find(tm.topic_id)), class: "h5 text-decoration-none" %>
-        <p><%= Topic.find(tm.topic_id).description %></p>
+      <div class="col-6">
+        <div class="topic-card p-3">
+          <%= link_to Topic.find(tm.topic_id).title, topic_path(Topic.find(tm.topic_id)), class: "h5 text-decoration-none" %>
+          <p><%= Topic.find(tm.topic_id).description %></p>
+        </div>
       </div>
     <% end %>
   </div>
@@ -28,9 +32,11 @@
   <hr>
   <div class="row g-2">
     <% @my_topics.each do |tm| %>
-      <div class="col-6 topic-card p-3">
-        <%= link_to Topic.find(tm.topic_id).title, topic_path(Topic.find(tm.topic_id)), class: "h5 text-decoration-none" %>
-        <p><%= Topic.find(tm.topic_id).description %></p>
+      <div class="col-6">
+        <div class="topic-card p-3">
+          <%= link_to Topic.find(tm.topic_id).title, topic_path(Topic.find(tm.topic_id)), class: "h5 text-decoration-none" %>
+          <p><%= Topic.find(tm.topic_id).description %></p>
+        </div>
       </div>
     <% end %>
   </div>

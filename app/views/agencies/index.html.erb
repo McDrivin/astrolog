@@ -1,14 +1,16 @@
-<div class="container">
-  <h1> Agencies and Companies in the space industry </h1>
-  <div class="row gx-4 justify-content-between">
+<div class="container text-center">
+  <hr>
+  <h1 class="fw-bold">AGENCIES</h1>
+  <hr>
+  <div class="row g-3 justify-content-between">
     <% @agencies.each do |agency| %>
       <div class="col-3">
-        <div class="card">
-          <div class="card-img-top">
+        <div class="card small-card">
+          <div class="card-img-top p-3 overflow-hidden small-card-img">
             <%= image_tag agency.logo_url.nil? ? "placeholder-image.png" : agency.logo_url, class: "card-img-top" %>
           </div>
           <div class="card-body">
-            <h5 class="card-title"><%= agency.name %></h5>
+            <h5 class="card-title text-truncate"><%= agency.name %></h5>
             <p class="card-text"><%= agency.country_code.split(',').first(3).join(" | ") %></p>
             <%= link_to "More info", agency_path(agency), class: "btn btn-primary" %>
           </div>
@@ -17,14 +19,6 @@
     <% end %>
   </div>
 </div>
-
-   <%# t.string "name"
-    t.string "country_code"
-    t.text "description"
-    t.string "founding_year"
-    t.string "spacecraft"
-    t.string "image_url"
-    t.string "logo_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "agency_type" %>
+<div class="container mt-3">
+  <%= paginate @agencies, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center" %>
+</div>

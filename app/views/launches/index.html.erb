@@ -1,5 +1,7 @@
 <div class="container">
-  <h1> Launches </h1>
+  <hr>
+    <h1 class="fw-bold text-center">UPCOMING LAUNCHES</h1>
+  <hr>
   <ul class="list-group">
     <% @launches.each do |launch| %>
       <div class="wide-card mb-3">
@@ -13,4 +15,7 @@
         </div>
       <% end %>
     </ul>
+</div>
+<div class="container mt-3">
+  <%= paginate @launches, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center" %>
 </div>
