@@ -1,19 +1,22 @@
 <div class="container">
   <h1> Agencies and Companies in the space industry </h1>
-  <ul class="list-group">
+  <div class="row gx-4 justify-content-between">
     <% @agencies.each do |agency| %>
-      <div class="card-product mb-3">
-        <%= image_tag agency.logo_url.nil? ? "placeholder-image.png" : agency.logo_url %>
-        <div class="card-product-infos">
-          <h2><%= agency.name %></h2>
-          <h6><%= agency.country_code %></h6>
-          <%= link_to "More info", agency_path(agency), class: "btn btn-primary" %>
+      <div class="col-3">
+        <div class="card">
+          <div class="card-img-top">
+            <%= image_tag agency.logo_url.nil? ? "placeholder-image.png" : agency.logo_url, class: "card-img-top" %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= agency.name %></h5>
+            <p class="card-text"><%= agency.country_code.split(',').first(3).join(" | ") %></p>
+            <%= link_to "More info", agency_path(agency), class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     <% end %>
-  </ul>
+  </div>
 </div>
-
 
    <%# t.string "name"
     t.string "country_code"

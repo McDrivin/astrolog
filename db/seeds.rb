@@ -2,12 +2,13 @@ require "json"
 require "open-uri"
 require "faker"
 
-def fetch_api(end_point)
+def parse_data(end_point)
   all_data = []
   base_url = "https://lldev.thespacedevs.com/2.2.0/#{end_point}"
-  # count = JSON.parse(URI.open(url).read)["count"]
-  2.times do |index|
-    url = "#{base_url}?offset=#{index}"
+  count = (JSON.parse(URI.open(base_url).read)["count"] / 10)
+  puts "Fetching #{end_point} for #{count} times..."
+  count.times do |index|
+    url = "#{base_url}?limit=10&offset=#{index * 10}"
     puts "Fetching from url: #{url}"
     data = JSON.parse(URI.open(url).read)
     all_data.concat(data["results"])
@@ -15,10 +16,10 @@ def fetch_api(end_point)
   return all_data
 end
 
-agencies = fetch_api("agencies")
-astronauts = fetch_api("astronaut")
-launches = fetch_api("launch/upcoming")
-events = fetch_api("event/upcoming")
+agencies = parse_data("agencies")
+astronauts = parse_data("astronaut")
+launches = parse_data("launch/upcoming")
+events = parse_data("event/upcoming")
 
 agencies.each do |agency|
   Agency.create(
@@ -72,7 +73,7 @@ events.each do |event|
   )
 end
 
-------------------------------------
+# ------------------------------------
 
 # articles.each do |article|
 #     Article.create(
@@ -90,7 +91,7 @@ end
 # end
 
 # articles
----------------------------------
+# ---------------------------------
 
 
 # ------------SEEDS FOR COMMUNITY-------------------
