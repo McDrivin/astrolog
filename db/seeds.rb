@@ -17,9 +17,9 @@ def parse_data(end_point)
 end
 
 agencies = parse_data("agencies")
-astronauts = parse_data("astronaut")
-launches = parse_data("launch/upcoming")
-events = parse_data("event/upcoming")
+# astronauts = parse_data("astronaut")
+# launches = parse_data("launch/upcoming")
+# events = parse_data("event/upcoming")
 
 agencies.each do |agency|
   Agency.create(
@@ -34,44 +34,44 @@ agencies.each do |agency|
   )
 end
 
-astronauts.each do |astronaut|
-  Astronaut.create(
-    name: astronaut["name"],
-    status: astronaut["status"]["name"],
-    agency: astronaut["agency"]["name"],
-    profile_image: astronaut["profile_image"]
-  )
-end
+# astronauts.each do |astronaut|
+#   Astronaut.create(
+#     name: astronaut["name"],
+#     status: astronaut["status"]["name"],
+#     agency: astronaut["agency"]["name"],
+#     profile_image: astronaut["profile_image"]
+#   )
+# end
 
-launches.each do |launch|
-  Launch.create!(
-    name: launch["name"],
-    status: launch["status"]["name"],
-    status_desc: launch["status"]["description"],
-    window_start: launch["window_start"],
-    window_end: launch["window_end"],
-    probability: launch["probability"],
-    agenc: launch["launch_service_provider"]["name"],
-    rocket: launch["rocket"]["configuration"]["name"],
-    mission: launch["mission"]["name"],
-    pad: launch["pad"]["name"],
-    pad_lat: launch["pad"]["latitude"],
-    pad_lng: launch["pad"]["longitude"]
-  )
-end
+# launches.each do |launch|
+#   Launch.create!(
+#     name: launch["name"],
+#     status: launch["status"]["name"],
+#     status_desc: launch["status"]["description"],
+#     window_start: launch["window_start"],
+#     window_end: launch["window_end"],
+#     probability: launch["probability"],
+#     agenc: launch["launch_service_provider"]["name"],
+#     rocket: launch["rocket"]["configuration"]["name"],
+#     mission: launch["mission"]["name"],
+#     pad: launch["pad"]["name"],
+#     pad_lat: launch["pad"]["latitude"],
+#     pad_lng: launch["pad"]["longitude"]
+#   )
+# end
 
-events.each do |event|
-  Event.create(
-    name: event["name"],
-    description: event["description"],
-    location: event["location"],
-    news_url: event["news_url"],
-    video_url: event["video_url"],
-    feature_image: event["feature_image"],
-    date: event["date"],
-    event_type: event["type"]["name"]
-  )
-end
+# events.each do |event|
+#   Event.create(
+#     name: event["name"],
+#     description: event["description"],
+#     location: event["location"],
+#     news_url: event["news_url"],
+#     video_url: event["video_url"],
+#     feature_image: event["feature_image"],
+#     date: event["date"],
+#     event_type: event["type"]["name"]
+#   )
+# end
 
 # ------------------------------------
 

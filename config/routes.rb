@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root 'nasa_picture#index'
 
   resources :events, only: %i[index show]
-  resources :agencies, only: %i[index show]
+  resources :agencies, only: %i[index show] do
+    get '/page/:page', action: :index, on: :collection
+  end
   resources :astronauts, only: %i[index show]
   resources :launches, only: %i[index show]
   resources :articles, only: %i[index show]
