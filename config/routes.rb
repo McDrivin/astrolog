@@ -19,12 +19,19 @@ Rails.application.routes.draw do
   end
   resources :articles, only: %i[index show]
 
-  resources :topics do
+  resources :topics, only: [:index, :show, :new, :create, :destroy] do
     resources :posts, only: [:new, :create]
     resources :topic_members, only: [:create]
   end
+
   resources :topic_members, only: [:destroy]
-  resources :posts do
-    resources :messages
+
+  resources :posts, only: [:show, :edit, :update, :destroy] do
+    get '/page/:page', action: :index, on: :collection
+    resources :messages, only: [:new, :create]
+  end
+
+  resources :messages, only: [:edit, :update, :destroy] do
+    get '/page/:page', action: :index, on: :collection
   end
 end
