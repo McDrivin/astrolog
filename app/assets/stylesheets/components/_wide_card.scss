@@ -2,11 +2,12 @@
   overflow: hidden;
   height: 300px;
   background: white;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  // box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 5px;
+  border: 1px solid #d6d6d6;
 }
 
 .wide-card img {
