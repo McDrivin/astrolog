@@ -4,5 +4,5 @@ class Post < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_rich_text :content
 
-  paginates_per 15
+  paginates_per 5
 end
