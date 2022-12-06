@@ -1,13 +1,44 @@
 <div class="container">
-  <h1><%= @launch.name %></h1>
-  <%= image_tag @launch.feature_image %>
-  <p><%= @launch.description %></p>
-  <%= link_to "News", "#{@launch.news_url}", class: "btn btn-success" %>
-  <%= link_to "Video", "#{@launch.video_url}", class: "btn btn-success" %>
+  <hr>
+    <h1 class="fw-bold text-center"><%= @launch.name %></h1>
+  <hr>
+  <div class="class row justify-content-center">
+    <div class="col-12 col-lg-4">
+      <div class="card bg-dark text-white">
+        <img class="card-img" <%= image_tag "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/#{@launch.pad_lng},#{@launch.pad_lat},13.5,0,0/400x400?access_token=#{ENV["MAPBOX_API_KEY"]}" %>
+
+            <h5 class="card-title">Launch side</h5>
+            <p class="card-text"><%= @launch.pad_lat%>φ <%= @launch.pad_lng %>λ</p>
+            <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<%#
-launches.each do |launch|
+<div class="card border-primary mb-3" style="max-width: 18rem;">
+  <div class="card-header">@<%=  %></div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Primary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+
+<%= @launch.name %>
+<%= @launch.status %>
+<%= @launch.status_desc %>
+<%= @launch.window_start %>
+<%= @launch.window_end %>
+<%= @launch.probability %>
+<%= @launch.agenc %>
+<%= @launch.rocket %>
+<%= @launch.mission %>
+<%= @launch.mission_desc %>
+
+
+
+<%# launches.each do |launch|
   Launch.create!(
     name: launch["name"],
     status: launch["status"]["name"],
