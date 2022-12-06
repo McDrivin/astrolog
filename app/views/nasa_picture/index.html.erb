@@ -1,18 +1,25 @@
 <div class="container-fluid">
-  <div class="card mb-3 mt-3 mx-3">
-    <% if @media_type_is_video %>
-    http://%=%20@nasa_info[
-    <% else %>
-    <img class="card-img-top" src="<%= @nasa_info["url"] %>" alt="Card image cap" />
-    <% end %>
-    <h1 class="text-center"><%= @nasa_info["title"] %></h1>
-    <p><%= @nasa_info["explanation"] %></p>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images8.alphacoders.com/125/thumb-1920-1255266.png);">
+    <div class="container">
+      <h1 class="text-center"><strong>ASTROLOG</strong></h1>
+      <p class="text-center">Bringing the wonders of the universe to your fingertips</p>
+    </div>
+</div>
+  <div class="card mb-3 mt-3 mx-3" style="width: 42rem;">
+      <h2 class="text-center">Picture of the day!</h2>
+      <% if @media_type_is_video %>
+      http://%=%20@nasa_info[
+      <% else %>
+      <img class="card-img-top" src="<%= @nasa_info["url"] %>" alt="Card image cap" />
+      <% end %>
+      <h1 class="text-center"><%= @nasa_info["title"] %></h1>
+      <p><%= @nasa_info["explanation"] %></p>
     </div>
 
 
-  <div class='card mx-3' style="width: 24rem;">
+  <div class='card mx-3 mb-3 text-center' style="width: 32rem;">
     <div class="card-header">
-      There are currently <%= @in_space["people"].size %> humans in space👾
+      Fun fact: These are the <%= @in_space["people"].size %> humans currently in space👾
       </div>
     <ul class="list-group list-group-flush">
         <% @in_space["people"].each do |space| %>
@@ -21,4 +28,31 @@
     </ul>
   </div>
 </div>
+
+<% @listings.each do |listing| %>
+      <div class="col-3">
+        <div class="card">
+          <% if listing.photos.any? %>
+            <%= cl_image_tag listing.photos.first.key, class: "card-img-top" %>
+          <% else %>
+            <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" alt="Placeholder">
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %></h5>
+            <% if false %>
+            <%# if listing.availability %>
+              <%# link_to "More info", listing_path(listing), class: "btn btn-primary" %>
+            <% else %>
+              <%# <p class="text-align-center" style="color: white; background: red">Currently unavailable.</p> %>
+            <% end %>
+              <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %></div>
+        </div>
+      </div>
+
+
+
+
+
+
+
 <%= render "shared/footer" %>

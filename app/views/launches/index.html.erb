@@ -16,10 +16,12 @@
   <ul class="list-group">
     <% @launches.each do |launch| %>
       <div class="wide-card mb-3">
-        <%= image_tag "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/#{launch.pad_lng},#{launch.pad_lat},10.20,0,60/400x400?access_token=#{ENV["MAPBOX_API_KEY"]}" %>
+        <%= image_tag "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s-l+000(#{launch.pad_lng},#{launch.pad_lat})/#{launch.pad_lng},#{launch.pad_lat},3.6,0,0/400x400?access_token=#{ENV["MAPBOX_API_KEY"]}" %>
           <div class="wide-card-infos">
             <h2><%= launch.name %></h2>
             <p><%= launch.agenc %></p>
+            <p>Rocket type: <%= launch.rocket %></p>
+            <p><%= launch.mission_desc %></p>
             <h5 data-controller="countdown" data-countdown-date-value="<%= launch.window_start.to_s %>"></h5>
             <%= link_to "More info", launch_path(launch), class: "btn btn-primary" %>
           </div>
