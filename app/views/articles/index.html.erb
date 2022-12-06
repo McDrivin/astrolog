@@ -1,11 +1,20 @@
-
 <div class="container">
   <h1> News Articles </h1>
+
+<form novalidate="novalidate" class="simple_form search" action="/articles" accept-charset="UTF-8" method="get">
+  <div class="search-form-control form-group">
+    <input class="form-control string required" type="text" name="query" id="search_query" value="<%= params[:query]   %>"/>
+    <button name="button" type="submit" class="btn btn-flat">
+      <i class="fas fa-search"></i> Search
+    </button>
+  </div>
+</form>
+
   <ul class="list-group">
     <% @articles.each do |article| %>
       <div class="card-product mb-3">
         <%= image_tag article["imageUrl"].nil? ? "placeholder-image.png" : article["imageUrl"] %>
-        <div class="card-product-infos">
+        <div class="wide-card-infos">
           <h2><%= article["title"] %></h2>
           <h6><%= article["summary"] %></h6>
           <%# <%= button_to "BUTTON: link version", users_path, :method => "get" %>

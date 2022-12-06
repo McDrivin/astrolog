@@ -3,6 +3,11 @@ class AstronautsController < ApplicationController
 
   def index
     @astronauts = Astronaut.order(:name).page params[:page]
+    if params[:query].present?
+      @astronauts = Astronaut.search_by_name(params[:query])
+    else
+      @astronauts = Astronaut.order(:name).page params[:page]
+    end
   end
 
   def show

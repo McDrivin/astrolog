@@ -7,7 +7,7 @@ def parse_data(end_point)
   base_url = "https://lldev.thespacedevs.com/2.2.0/#{end_point}"
   count = (JSON.parse(URI.open(base_url).read)["count"] / 10)
   puts "Fetching #{end_point} for #{count} times..."
-  count.times do |index|
+  2.times do |index|
     url = "#{base_url}?limit=10&offset=#{index * 10}"
     puts "Fetching from url: #{url}"
     data = JSON.parse(URI.open(url).read)
@@ -44,6 +44,7 @@ astronauts.each do |astronaut|
 end
 
 launches.each do |launch|
+  # mission = launch["mission"]["name"] ? launch["mission"]["name"] : nil
   Launch.create!(
     name: launch["name"],
     status: launch["status"] ? launch["status"]["name"] : nil,
@@ -137,3 +138,9 @@ puts "End seeding community"
 url = "http://api.open-notify.org/astros.json"
 user_serialized = URI.open(url).read
 @user = JSON.parse(user_serialized)
+
+PgSearch::Multisearch.rebuild(Article)
+PgSearch::Multisearch.rebuild(Agency)
+PgSearch::Multisearch.rebuild(Astronaut)
+PgSearch::Multisearch.rebuild(Event)
+PgSearch::Multisearch.rebuild(Launch)
