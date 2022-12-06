@@ -2,11 +2,11 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @events = Event.all
+    @events = Event.order(:date).page params[:page]
     if params[:query].present?
       @events = Event.search_by_name(params[:query])
     else
-      @events = Event.all
+      @events = Event.order(:date).page params[:page]
     end
   end
 

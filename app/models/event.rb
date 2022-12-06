@@ -6,4 +6,5 @@ class Event < ApplicationRecord
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
+  paginates_per 4
 end

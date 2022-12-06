@@ -2,11 +2,11 @@ class AstronautsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @astronauts = Astronaut.all
+    @astronauts = Astronaut.order(:name).page params[:page]
     if params[:query].present?
       @astronauts = Astronaut.search_by_name(params[:query])
     else
-      @astronauts = Astronaut.all
+      @astronauts = Astronaut.order(:name).page params[:page]
     end
   end
 

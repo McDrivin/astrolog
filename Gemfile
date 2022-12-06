@@ -49,7 +49,12 @@ gem "sassc-rails"
 
 gem "faker"
 
+
 gem "pg_search"
+
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
+
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"

@@ -1,7 +1,10 @@
 <div class="container">
-  <h1> Upcoming Events </h1>
 
-<form novalidate="novalidate" class="simple_form search" action="/events" accept-charset="UTF-8" method="get">
+  <hr>
+    <h1 class="fw-bold text-center">UPCOMING EVENTS</h1>
+  <hr>
+  
+  <form novalidate="novalidate" class="simple_form search" action="/events" accept-charset="UTF-8" method="get">
   <div class="search-form-control form-group">
     <input class="form-control string required" type="text" name="query" id="search_query" value="<%= params[:query]   %>"/>
     <button name="button" type="submit" class="btn btn-flat">
@@ -24,4 +27,7 @@
       </div>
     <% end %>
   </ul>
+</div>
+<div class="container mt-3">
+  <%= paginate @events, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center" %>
 </div>

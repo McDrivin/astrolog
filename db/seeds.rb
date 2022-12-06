@@ -37,8 +37,8 @@ end
 astronauts.each do |astronaut|
   Astronaut.create(
     name: astronaut["name"],
-    status: astronaut["status"]["name"],
-    agency: astronaut["agency"]["name"],
+    status: astronaut["status"] ? astronaut["status"]["name"] : nil,
+    agency: astronaut["agency"] ? astronaut["agency"]["name"] : nil,
     profile_image: astronaut["profile_image"]
   )
 end
@@ -47,17 +47,17 @@ launches.each do |launch|
   # mission = launch["mission"]["name"] ? launch["mission"]["name"] : nil
   Launch.create!(
     name: launch["name"],
-    status: launch["status"]["name"],
-    status_desc: launch["status"]["description"],
+    status: launch["status"] ? launch["status"]["name"] : nil,
+    status_desc: launch["status"] ? launch["status"]["description"] : nil,
     window_start: launch["window_start"],
     window_end: launch["window_end"],
     probability: launch["probability"],
-    agenc: launch["launch_service_provider"]["name"],
-    rocket: launch["rocket"]["configuration"]["name"],
+    agenc: launch["launch_service_provider"] ? launch["launch_service_provider"]["name"] : nil,
+    rocket: launch["rocket"] ? launch["rocket"]["configuration"]["name"] : nil,
     mission: launch["mission"] ? launch["mission"]["name"] : nil,
-    pad: launch["pad"]["name"],
-    pad_lat: launch["pad"]["latitude"],
-    pad_lng: launch["pad"]["longitude"]
+    pad: launch["pad"] ? launch["pad"]["name"] : nil,
+    pad_lat: launch["pad"] ? launch["pad"]["latitude"] : nil,
+    pad_lng: launch["pad"] ? launch["pad"]["longitude"] : nil
   )
 end
 
@@ -70,7 +70,7 @@ events.each do |event|
     video_url: event["video_url"],
     feature_image: event["feature_image"],
     date: event["date"],
-    event_type: event["type"]["name"]
+    event_type: event["type"] ? event["type"]["name"] : nil
   )
 end
 
@@ -93,7 +93,6 @@ end
 
 # articles
 # ---------------------------------
-
 
 # ------------SEEDS FOR COMMUNITY-------------------
 puts "Start seeding community"

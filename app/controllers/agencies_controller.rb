@@ -2,11 +2,11 @@ class AgenciesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @agencies = Agency.all
+    @agencies = Agency.order(:name).page params[:page]
     if params[:query].present?
       @agencies = Agency.search_by_name(params[:query])
     else
-      @agencies = Agency.all
+      @agencies = Agency.order(:name).page params[:page]
     end
   end
 
