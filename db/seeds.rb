@@ -2,12 +2,13 @@ require "json"
 require "open-uri"
 require "faker"
 
-def fetch_api(end_point)
+def parse_data(end_point)
   all_data = []
   base_url = "https://lldev.thespacedevs.com/2.2.0/#{end_point}"
-  # count = JSON.parse(URI.open(url).read)["count"]
-  2.times do |index|
-    url = "#{base_url}?offset=#{index}"
+  count = (JSON.parse(URI.open(base_url).read)["count"] / 10)
+  puts "Fetching #{end_point} for #{count} times..."
+  count.times do |index|
+    url = "#{base_url}?limit=10&offset=#{index * 10}"
     puts "Fetching from url: #{url}"
     data = JSON.parse(URI.open(url).read)
     all_data.concat(data["results"])
@@ -15,10 +16,10 @@ def fetch_api(end_point)
   return all_data
 end
 
-agencies = fetch_api("agencies")
-astronauts = fetch_api("astronaut")
-launches = fetch_api("launch/upcoming")
-events = fetch_api("event/upcoming")
+agencies = parse_data("agencies")
+astronauts = parse_data("astronaut")
+launches = parse_data("launch/upcoming")
+events = parse_data("event/upcoming")
 
 agencies.each do |agency|
   Agency.create(
@@ -36,26 +37,26 @@ end
 astronauts.each do |astronaut|
   Astronaut.create(
     name: astronaut["name"],
-    status: astronaut["status"]["name"],
-    agency: astronaut["agency"]["name"],
+    status: astronaut["status"] ? astronaut["status"]["name"] : nil,
+    agency: astronaut["agency"] ? astronaut["agency"]["name"] : nil,
     profile_image: astronaut["profile_image"]
   )
 end
 
 launches.each do |launch|
-  Launch.create(
+  Launch.create!(
     name: launch["name"],
-    status: launch["status"]["name"],
-    status_desc: launch["status"]["description"],
+    status: launch["status"] ? launch["status"]["name"] : nil,
+    status_desc: launch["status"] ? launch["status"]["description"] : nil,
     window_start: launch["window_start"],
     window_end: launch["window_end"],
     probability: launch["probability"],
-    agenc: launch["launch_service_provider"]["name"],
-    rocket: launch["rocket"]["configuration"]["name"],
-    mission: launch["mission"]["name"],
-    pad: launch["pad"]["name"],
-    pad_lat: launch["pad"]["latitude"],
-    pad_lng: launch["pad"]["longitude"]
+    agenc: launch["launch_service_provider"] ? launch["launch_service_provider"]["name"] : nil,
+    rocket: launch["rocket"] ? launch["rocket"]["configuration"]["name"] : nil,
+    mission: launch["mission"] ? launch["mission"]["name"] : nil,
+    pad: launch["pad"] ? launch["pad"]["name"] : nil,
+    pad_lat: launch["pad"] ? launch["pad"]["latitude"] : nil,
+    pad_lng: launch["pad"] ? launch["pad"]["longitude"] : nil
   )
 end
 
@@ -68,22 +69,11 @@ events.each do |event|
     video_url: event["video_url"],
     feature_image: event["feature_image"],
     date: event["date"],
-    event_type: event["type"]["name"]
+    event_type: event["type"] ? event["type"]["name"] : nil
   )
 end
 
-# def fetch_api2(end_point)
-#   all_data = []
-#   base_url = "https://api.spaceflightnewsapi.net/v3/articles#{end_point}"
-#   # count = JSON.parse(URI.open(url).read)["count"]
-#   2.times do |index|
-#     url = "#{base_url}?offset=#{index}"
-#     puts "Fetching from url: #{url}"
-#     data = JSON.parse(URI.open(url).read)
-#     all_data.concat(data["results"])
-#   end
-#   return all_data
-# end
+# ------------------------------------
 
 # articles.each do |article|
 #     Article.create(
@@ -98,21 +88,10 @@ end
 #       featured: article["featured"]
 #       launches: article["id"]["provider"]
 #     )
+# end
 
-
-# {
-#   "id": 17457,
-#   "title": "US Vice President, French President Visit NASA Headquarters",
-#   "url": "http://www.nasa.gov/press-release/us-vice-president-french-president-visit-nasa-headquarters",
-#   "imageUrl": "https://www.nasa.gov/sites/default/files/thumbnails/image/harrisnasahq.jpg?itok=TgOdUyko",
-#   "newsSite": "NASA",
-#   "summary": "NASA Administrator Bill Nelson welcomed Vice President Kamala Harris and French President Emmanuel Macron to NASA Headquarters in Washington Wednesday.",
-#   "publishedAt": "2022-11-30T20:25:00.000Z",
-#   "updatedAt": "2022-11-30T20:25:04.432Z",
-#   "featured": false,
-#   "launches": [],
-#   "events": []
-# },
+# articles
+# ---------------------------------
 
 # ------------SEEDS FOR COMMUNITY-------------------
 puts "Start seeding community"
@@ -128,7 +107,9 @@ emails = ["test@test.com", "user@gmail.com"]
 end
 
 5.times do |i|
-  Topic.create(title: "This is topic #{i + 1}", description: Faker::Lorem.sentence(word_count: 3))
+  topic = Topic.create(title: "This is topic #{i + 1}", description: Faker::Lorem.sentence(word_count: 3))
+  topic.topic_members.create(role: 'creator', user: User.find(rand(1..2)))
+  # topic.save
 end
 
 Topic.all.each do |topic|

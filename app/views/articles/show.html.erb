@@ -1,0 +1,22 @@
+<div class="container">
+  <h1><%= @article.title %></h1>
+  <%= image_tag @article.imageUrl %>
+  <p><%= @article.summary %></p>
+  <%= link_to "News", "#{@article.url}", class: "btn btn-success" %>
+  <%= link_to "Video", "#{@article.url}", class: "btn btn-success" %>
+</div>
+
+<%# articles.each do |article|
+    Article.create(
+      id: article["id"]
+      title: article["title"]
+      url: article["url"]
+      imageUrl: article["imageUrl"]
+      newsSite: article["newsSite"]
+      summary: article["summary"]
+      publishedAt: article["publishedAt"]
+      updatedAt: article["updatedAt"]
+      featured: article["featured"]
+      launches: article["id"]["provider"]
+    )
+ %>

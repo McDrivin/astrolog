@@ -1,4 +1,5 @@
 require "json"
+require_relative "article.rb"
 
 class NasaApi < ApplicationRecord
   def self.get_api_info
@@ -11,5 +12,11 @@ class NasaApi < ApplicationRecord
     url = "http://api.open-notify.org/astros.json"
     request_to_nasa_api = Net::HTTP.get(URI(url))
     JSON.parse request_to_nasa_api
+  end
+
+  def self.article_api
+    url = "https://api.spaceflightnewsapi.net/v3/articles"
+    request_to_article_api = Net::HTTP.get(URI(url))
+    JSON.parse request_to_article_api
   end
 end

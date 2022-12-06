@@ -1,25 +1,30 @@
 <div class="container">
   <div class="d-flex justify-content-between align-items-center mt-3">
     <h1><%= @topic.title %></h1>
-    <%= link_to "New Post", new_post_path, class: "btn btn-primary"  %>
+    <%# link_to "New Post", new_post_path, class: "btn btn-primary"  %>
   </div>
   <p><%= @topic.description %></p>
   <div class="d-flex justify-content-between align-items-center mt-3">
-    <h2>Members</h2>
-    <% if @current_user_topic_member %>
-      <%= link_to "Leave topic", topic_member_path(@current_user_topic_member), data: {turbo_method: :delete}, class: "btn btn-warning" %>
+    <p class="m-0 fw-bold">Members: <%= @topic.topic_members.count %></p>
+    <% if !@current_user_topic_member.nil? %>
+      <% if @current_user_topic_member.role == 'member' %>
+        <%= link_to "Leave topic", topic_member_path(@current_user_topic_member), data: {turbo_method: :delete}, class: "btn btn-warning" %>
+      <% else %>
+        <%= link_to "Delete topic", topic_path(@topic), data: {turbo_method: :delete}, class: "btn btn-danger" %>
+      <% end %>
     <% else %>
       <%= link_to "Join topic", topic_topic_members_path(@topic), data: {turbo_method: :post}, class: "btn btn-primary" %>
     <% end %>
   </div>
-  <% @topic.topic_members.each do |member| %>
-    <%= render member %>
-  <% end %>
-  <ul>
+  <div class="post-cards">
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item mt-2"><%= link_to "Start new discussion", new_topic_post_path(@topic) %></li>
     <% @posts.each do |post| %>
-      <li>
-        <%= post.title %>
-        <%= link_to "Replies", post_path(post) %>
+      <li class="list-group-item mt-2">
+        <%= link_to post_path(post), class: "text-decoration-none" do %>
+          <h5 class="m-0"><%= post.title %></h5>
+        <% end %>
       </li>
     <% end %>
   </ul>

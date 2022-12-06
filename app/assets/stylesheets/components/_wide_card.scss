@@ -1,26 +1,26 @@
-.event-card-product {
+.wide-card {
   overflow: hidden;
   height: 300px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   text-align: center;
   border-radius: 10px;
 }
 
-.event-card-product img {
+.wide-card img {
   height: 100%;
   width: 300px;
   object-fit: cover;
 }
 
-.event-card-product h2 {
+.wide-card h2 {
   font-weight:500;
   margin: 0;
 }
 
-.event-card-product p {
+.wide-card p {
   font-size: 16px;
   line-height: 1.4;
   opacity: .7;
@@ -28,7 +28,7 @@
   margin-top: 8px;
 }
 
-.event-card-product .event-card-product-infos {
+.wide-card .wide-card-infos {
   padding: 16px;
   flex-grow: 1;
 }

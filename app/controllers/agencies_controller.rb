@@ -2,7 +2,7 @@ class AgenciesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @agencies = Agency.all
+    @agencies = Agency.order(:name).page params[:page]
   end
 
   def show

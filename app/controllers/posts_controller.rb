@@ -2,12 +2,14 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = User.find(@post.user_id)
     @message = Message.new
     @messages = Message.where(post_id: params[:id])
   end
 
   def new
     @post = Post.new
+    @topic = Topic.find(params[:topic_id])
   end
 
   def create
@@ -16,7 +18,7 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post.topic = @topic
     if @post.save
-      redirect_to topic_path(@topic)
+      redirect_to post_path(@post)
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,6 +27,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :title)
   end
 end
