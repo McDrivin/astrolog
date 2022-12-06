@@ -3,6 +3,11 @@ class LaunchesController < ApplicationController
 
   def index
     @launches = Launch.all
+    if params[:query].present?
+      @launches = Launch.search_by_name(params[:query])
+    else
+      @launches = Launch.all
+    end
   end
 
   def show

@@ -3,6 +3,11 @@ class AgenciesController < ApplicationController
 
   def index
     @agencies = Agency.all
+    if params[:query].present?
+      @agencies = Agency.search_by_name(params[:query])
+    else
+      @agencies = Agency.all
+    end
   end
 
   def show

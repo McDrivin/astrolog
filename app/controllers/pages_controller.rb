@@ -8,4 +8,9 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  # def search
+  #   # raise
+  #   results = PgSearch.multisearch(params[:search][:query])
+  # end
 end

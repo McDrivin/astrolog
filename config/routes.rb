@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   # root to: "pages#home"
   root 'nasa_picture#index'
+  post "/search", to: "pages#search"
 
   resources :events, only: %i[index show]
   resources :agencies, only: %i[index show]
