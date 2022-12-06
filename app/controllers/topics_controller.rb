@@ -10,7 +10,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @current_user_topic_member = @topic.find_topic_member(current_user)
     @creator = User.find(@topic.topic_members.find_by(role: 'creator').user_id)
-    @posts = Post.where(topic_id: params[:id])
+    @posts = Post.where(topic_id: params[:id]).page params[:page]
     @post = Post.new
   end
 

@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
-
+  before_action :set_post, only: [:show, :destroy, :edit, :update]
   def show
-    @post = Post.find(params[:id])
     @user = User.find(@post.user_id)
     @message = Message.new
-    @messages = Message.where(post_id: params[:id])
+    @messages = Message.where(post_id: params[:id]).page params[:page]
   end
 
   def new
@@ -24,7 +23,28 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to @post, notice: "Post was updated successfully."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @topic = Topic.find(@post.topic_id)
+    @post.destroy
+    redirect_to topic_path(@topic), status: :see_other, alert: "Post was deleted successfully."
+  end
+
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:content, :title)

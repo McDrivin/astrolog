@@ -9,7 +9,7 @@
       <div class="col-6">
         <div class="topic-card p-3">
           <%= link_to topic.title, topic_path(topic), class: "h5 text-decoration-none" %>
-          <p><%= topic.description %></p>
+          <p class="text-muted"><%= topic.description %></p>
         </div>
       </div>
     <% end %>
@@ -22,20 +22,20 @@
       <div class="col-6">
         <div class="topic-card p-3">
           <%= link_to Topic.find(tm.topic_id).title, topic_path(Topic.find(tm.topic_id)), class: "h5 text-decoration-none" %>
-          <p><%= Topic.find(tm.topic_id).description %></p>
+          <p class="text-muted"><%= Topic.find(tm.topic_id).description %></p>
         </div>
       </div>
     <% end %>
   </div>
   <br>
-  <h2>My topics</h2>
+  <h2>My Topics</h2>
   <hr>
   <div class="row g-2">
     <% @my_topics.each do |tm| %>
       <div class="col-6">
         <div class="topic-card p-3">
           <%= link_to Topic.find(tm.topic_id).title, topic_path(Topic.find(tm.topic_id)), class: "h5 text-decoration-none" %>
-          <p><%= Topic.find(tm.topic_id).description %></p>
+          <p class="text-muted"><%= Topic.find(tm.topic_id).description %></p>
         </div>
       </div>
     <% end %>
