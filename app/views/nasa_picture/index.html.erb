@@ -9,7 +9,6 @@
 </div>
 <div style="margin-top: 50px;"><h3>Daily Mars Rover Image</h3></div>
 <div style="width: 70%; margin: 70px auto"><%= image_tag @mars_rover["img_src"] %></div>
-
 <div class="row justify-content-around">
     <div class="col-3">
       <div class='text-center card text-white bg-danger'>
@@ -37,16 +36,12 @@
         </div>
       </div>
     </div>
-
-
-
-
   <div style="width: 70%; margin: 50px auto;">
     <div>
-        <h2 class="text-center" id="potd">Picture of the day!</h2>
-     <div class="card" >
+      <h2 class="text-center" id="potd">Picture of the day!</h2>
+      <div class="card" >
         <% if @media_type_is_video %>
-        http://%=%20@nasa_info[
+
         <% else %>
         <img class="card-img-top" src="<%= @nasa_info["url"] %>" alt="Card image cap" />
         <% end %>

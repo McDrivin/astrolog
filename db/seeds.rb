@@ -21,7 +21,6 @@ astronauts = parse_data("astronaut")
 launches = parse_data("launch/upcoming")
 events = parse_data("event/upcoming")
 
-
 agencies.each do |agency|
   Agency.create(
     name: agency["name"],
@@ -45,8 +44,7 @@ astronauts.each do |astronaut|
 end
 
 launches.each do |launch|
-  # mission = launch["mission"]["name"] ? launch["mission"]["name"] : nil
-  Launch.create!(
+  Launch.create(
     name: launch["name"],
     status: launch["status"] ? launch["status"]["name"] : nil,
     status_desc: launch["status"] ? launch["status"]["description"] : nil,
@@ -75,45 +73,30 @@ events.each do |event|
   )
 end
 
-# -----------------------------------
-
-
+puts "Parsing articles..."
 def parse_articles
-  all_data = []
   base_url = "https://api.spaceflightnewsapi.net/v3/articles"
   puts "Fetching from url: #{base_url}"
   data = JSON.parse(URI.open(base_url).read)
   return data
 end
 
-# def self.article_api
-#   url = "https://api.spaceflightnewsapi.net/v3/articles"
-#   request_to_article_api = Net::HTTP.get(URI(url))
-#   JSON.parse request_to_article_api
-# end
-
 articles = parse_articles
 
 articles.each do |article|
-  puts article
-    Article.create(
-      # id: article["id"],
-      title: article["title"],
-      url: article["url"],
-      imageUrl: article["imageUrl"],
-      newsSite: article["newsSite"],
-      summary: article["summary"],
-      publishedAt: article["publishedAt"],
-      updatedAt: article["updatedAt"],
-      featured: article["featured"]
-    )
+  Article.create(
+    title: article["title"],
+    url: article["url"],
+    imageUrl: article["imageUrl"],
+    newsSite: article["newsSite"],
+    summary: article["summary"],
+    publishedAt: article["publishedAt"],
+    updatedAt: article["updatedAt"],
+    featured: article["featured"]
+  )
 end
 
-# articles
-# ---------------------------------
-
-# ------------SEEDS FOR COMMUNITY-------------------
-puts "Start seeding community"
+puts "Seeding community..."
 emails = ["test@test.com", "user@gmail.com"]
 2.times do |i|
   User.create(
@@ -151,14 +134,4 @@ Topic.all.each do |topic|
     end
   end
 end
-puts "End seeding community"
-
-url = "http://api.open-notify.org/astros.json"
-user_serialized = URI.open(url).read
-@user = JSON.parse(user_serialized)
-
-# PgSearch::Multisearch.rebuild(Article)
-# PgSearch::Multisearch.rebuild(Agency)
-# PgSearch::Multisearch.rebuild(Astronaut)
-# PgSearch::Multisearch.rebuild(Event)
-# PgSearch::Multisearch.rebuild(Launch)
+puts "Seeding successfully finished!"
