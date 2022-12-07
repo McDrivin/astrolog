@@ -21,6 +21,7 @@ astronauts = parse_data("astronaut")
 launches = parse_data("launch/upcoming")
 events = parse_data("event/upcoming")
 
+
 agencies.each do |agency|
   Agency.create(
     name: agency["name"],
@@ -74,22 +75,39 @@ events.each do |event|
   )
 end
 
-# ------------------------------------
+# -----------------------------------
 
-# articles.each do |article|
-#     Article.create(
-#       id: article["id"]
-#       title: article["title"]
-#       url: article["url"]
-#       imageUrl: article["imageUrl"]
-#       newsSite: article["newsSite"]
-#       summary: article["summary"]
-#       publishedAt: article["publishedAt"]
-#       updatedAt: article["updatedAt"]
-#       featured: article["featured"]
-#       launches: article["id"]["provider"]
-#     )
+
+def parse_articles
+  all_data = []
+  base_url = "https://api.spaceflightnewsapi.net/v3/articles"
+  puts "Fetching from url: #{base_url}"
+  data = JSON.parse(URI.open(base_url).read)
+  return data
+end
+
+# def self.article_api
+#   url = "https://api.spaceflightnewsapi.net/v3/articles"
+#   request_to_article_api = Net::HTTP.get(URI(url))
+#   JSON.parse request_to_article_api
 # end
+
+articles = parse_articles
+
+articles.each do |article|
+  puts article
+    Article.create(
+      # id: article["id"],
+      title: article["title"],
+      url: article["url"],
+      imageUrl: article["imageUrl"],
+      newsSite: article["newsSite"],
+      summary: article["summary"],
+      publishedAt: article["publishedAt"],
+      updatedAt: article["updatedAt"],
+      featured: article["featured"]
+    )
+end
 
 # articles
 # ---------------------------------
@@ -139,8 +157,8 @@ url = "http://api.open-notify.org/astros.json"
 user_serialized = URI.open(url).read
 @user = JSON.parse(user_serialized)
 
-PgSearch::Multisearch.rebuild(Article)
-PgSearch::Multisearch.rebuild(Agency)
-PgSearch::Multisearch.rebuild(Astronaut)
-PgSearch::Multisearch.rebuild(Event)
-PgSearch::Multisearch.rebuild(Launch)
+# PgSearch::Multisearch.rebuild(Article)
+# PgSearch::Multisearch.rebuild(Agency)
+# PgSearch::Multisearch.rebuild(Astronaut)
+# PgSearch::Multisearch.rebuild(Event)
+# PgSearch::Multisearch.rebuild(Launch)
