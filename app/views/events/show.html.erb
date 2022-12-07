@@ -1,7 +1,22 @@
 <div class="container">
-  <h1><%= @event.name %></h1>
-  <%= image_tag @event.feature_image %>
-  <p><%= @event.description %></p>
-  <%= link_to "News", "#{@event.news_url}", class: "btn btn-success" %>
-  <%= link_to "Video", "#{@event.video_url}", class: "btn btn-success" %>
+  <h1 class="mt-3"><%= @event.name %></h1>
+  <div class="card w-100">
+    <%= image_tag @event.feature_image, class: "card-img-top" %>
+    <div class="card-body">
+      <p class="card-text"><%= @event.description %></p>
+      <%= link_to "News", "#{@event.news_url}", class: "btn btn-primary w-100" %>
+    </div>
+  </div>
+</div>
+<div class="container my-3">
+<h2>Watch live</h2>
+  <div class="ratio ratio-16x9">
+    <iframe
+    style="border-radius: 5px"
+      src="<%= @embed_video %>"
+      allowfullscreen
+      allowtransparency
+      allow="autoplay"
+    ></iframe>
+  </div>
 </div>

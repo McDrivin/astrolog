@@ -12,5 +12,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    video_url = @event.video_url
+    @embed_video = "https://www.youtube.com/embed/#{video_url.split("v=").last}"
+    @embed_id = video_url.split("v=").last
   end
 end

@@ -6,6 +6,7 @@
     "@hotwired/turbo-rails": "^7.2.4",
     "@popperjs/core": "^2.11.6",
     "@rails/actiontext": "^7.0.4",
+    "@vidstack/player": "^0.13.3",
     "bootstrap": "^5.2.3",
     "trix": "^2.0.2",
     "webpack": "^5.75.0",
