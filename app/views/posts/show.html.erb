@@ -2,7 +2,11 @@
   <div class="post container">
     <div class="post-body">
       <div class="post-user">
-        <%= image_tag "avatar.webp", class: "post-avatar", class: "my-2" %>
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key, class: "post-avatar", class: "my-2" %>
+        <% else %>
+          <%= image_tag "avatar.webp", class: "post-avatar", class: "my-2" %>
+        <% end %>
         <p class="post-username"><%= @user.username %></p>
       </div>
       <div class="m-2 post-content">
@@ -28,7 +32,11 @@
     <div class="post mt-2 p-3">
       <div class="post-body">
         <div class="post-user">
-          <%= image_tag "avatar.webp", class: "post-avatar", class: "my-2" %>
+          <% if User.find(message.user_id).photo.attached? %>
+            <%= cl_image_tag User.find(message.user_id).photo.key, class: "post-avatar", class: "my-2" %>
+          <% else %>
+            <%= image_tag "avatar.webp", class: "post-avatar", class: "my-2" %>
+          <% end %>
           <p class="post-username"><%= User.find(message.user_id).username %></p>
         </div>
         <div class="m-2 post-content">
