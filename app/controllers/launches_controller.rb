@@ -4,7 +4,7 @@ class LaunchesController < ApplicationController
   def index
     @launches = Launch.order(:window_start).page params[:page]
     if params[:query].present?
-      @launches = Launch.search_by_name(params[:query])
+      @launches = Launch.search_by_name(params[:query]).page params[:page]
     else
       @launches = Launch.order(:window_start).page params[:page]
     end

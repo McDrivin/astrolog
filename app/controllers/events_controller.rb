@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.order(:date).page params[:page]
     if params[:query].present?
-      @events = Event.search_by_name(params[:query])
+      @events = Event.search_by_name(params[:query]).page params[:page]
     else
       @events = Event.order(:date).page params[:page]
     end
