@@ -5,5 +5,6 @@ class NasaPictureController < ApplicationController
     @media_type_is_video = @nasa_info['media_type'].eql?('video')
     # @in_space = NasaApi.ppl_in_space_api
     @in_space = NasaApi.ppl_in_space_api
+    @launches = Launch.all
   end
 end
