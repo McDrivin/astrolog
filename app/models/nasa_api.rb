@@ -1,5 +1,6 @@
 require "json"
 require_relative "article.rb"
+require "open-uri"
 
 class NasaApi < ApplicationRecord
   def self.get_api_info
@@ -14,9 +15,9 @@ class NasaApi < ApplicationRecord
     JSON.parse request_to_nasa_api
   end
 
-  # def self.article_api
-  #   url = "https://api.spaceflightnewsapi.net/v3/articles"
-  #   request_to_article_api = Net::HTTP.get(URI(url))
-  #   JSON.parse request_to_article_api
-  # end
+  def self.mars_rover_api
+    url = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=#{ENV['NASA_API_KEY']}"
+    request_to_nasa_api = Net::HTTP.get(URI(url))
+    JSON.parse request_to_nasa_api
+  end
 end
