@@ -1,21 +1,58 @@
 // Specific CSS for your home-page
 .banner {
+  background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(https://images8.alphacoders.com/125/thumb-1920-1255266.png);
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  padding: 200px 0;
 }
 
 .banner h1 {
   margin: 0;
   color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
+  text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+  font-size: 4rem;
   font-weight: bold;
 }
 
 .banner p {
-  font-size: 20px;
+  font-size: 1.5rem;
   color: white;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  gap: 1%;
+}
+
+.mars-rover {
+  img {
+    width: 100%;
+  }
+}
+
+.pod-card {
+  position: relative;
+  img {
+    border-radius: 5px;
+    object-fit: cover;
+    height: 570px;
+  }
+}
+
+.pod-card-details {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  background-color: white;
+  p {
+    font-size: 0.8rem;
+  }
+}
+
+.pod-card-details:hover {
+  opacity: 0.8;
 }

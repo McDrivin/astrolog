@@ -7,10 +7,11 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
-  end
+    @nasa_info = NasaApi.nasa_picture
+    @media_type_is_video = @nasa_info['media_type'].eql?('video')
 
-  # def search
-  #   # raise
-  #   results = PgSearch.multisearch(params[:search][:query])
-  # end
+    @in_space = NasaApi.ppl_in_space_api
+    @articles = Article.first(8)
+    @mars_rover = NasaApi.mars_rover_api["latest_photos"].first
+  end
 end
