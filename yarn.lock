@@ -115,6 +115,11 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.51.tgz#cfd70924a25a3fd32b218e5e420e6897e1ac4f40"
   integrity sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==
 
+"@types/fscreen@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/fscreen/-/fscreen-1.0.1.tgz#d924e07d0468eb056abeca41bd54e742ddce2b6d"
+  integrity sha512-hV2d0BreihMGtrg+EdAFOIl/O2EL5vhAheHJUztGE/lPFZIN8ZCpGFL8hCbtyi1CfhKjDRCf47sHjP+FwJ4q0Q==
+
 "@types/json-schema@*", "@types/json-schema@^7.0.8":
   version "7.0.11"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
@@ -124,6 +129,20 @@
   version "18.11.9"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
   integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
+
+"@vidstack/foundation@0.13.3":
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/@vidstack/foundation/-/foundation-0.13.3.tgz#3ed30c4d4e6205fca6cb6d5c46a2cad024240a5f"
+  integrity sha512-My7h4NxNuA08McDVFbj4C0mykzrvMW9SjnTNMPpjh4O4S748ROXfEuOEElr/PNXIAJSS2b7Pc747BWXk4Dz3dQ==
+  dependencies:
+    "@types/fscreen" "^1.0.1"
+
+"@vidstack/player@^0.13.3":
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/@vidstack/player/-/player-0.13.3.tgz#e43355764a22c1d163685a1e25c21054151050da"
+  integrity sha512-XYNIPc3lEGP8BcgFMNF+bHBK7cHQffOrSLoD8dQtOCh2UbNlunaxAyC/+IfItoDE1ICIj1l9DzrgO2aY3vQRdA==
+  dependencies:
+    "@vidstack/foundation" "0.13.3"
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"

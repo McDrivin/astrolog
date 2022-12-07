@@ -4,7 +4,7 @@ class AgenciesController < ApplicationController
   def index
     @agencies = Agency.order(:name).page params[:page]
     if params[:query].present?
-      @agencies = Agency.search_by_name(params[:query])
+      @agencies = Agency.search_by_name(params[:query]).page params[:page]
     else
       @agencies = Agency.order(:name).page params[:page]
     end
