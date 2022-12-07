@@ -1,53 +1,45 @@
-<div style="text-align: center;">
 <div class="w-100">
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images8.alphacoders.com/125/thumb-1920-1255266.png);">
+  <div class="banner">
     <div class="container">
       <h1 class="text-center"><strong>ASTROLOG</strong></h1>
       <p class="text-center">Bringing the wonders of the universe to your fingertips</p>
     </div>
   </div>
 </div>
-<div style="margin-top: 50px;"><h3>Daily Mars Rover Image</h3></div>
-<div style="width: 70%; margin: 70px auto"><%= image_tag @mars_rover["img_src"] %></div>
-<div class="row justify-content-around">
-    <div class="col-3">
-      <div class='text-center card text-white bg-danger'>
+<div class="container mt-3">
+  <div class="home-grid">
+    <div class="in-space">
+      <div class='text-center card'>
         <div class="card-header">
-          <strong>Fun fact:</strong> These are the <%= @in_space["people"].size %> humans currently in space
+          <%= @in_space["people"].size %> humans currently in space
         </div>
-          <ul class="list-group list-group-flush">
-            <% @in_space["people"].each do |space| %>
-            <li class="list-group-item"> <%= space["name"] %> </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    <div class="col-3">
-      <div class='text-center card text-white bg-dark '>
-        <div class="card-header">
-          Latest news articles
-        </div>
-          <ul class="list-group list-group-flush">
-            <% @articles.each do |article| %>
-            <li class="list-group-item"> <%= article.title %> </li>
-            <% end %>
-            <a href="/articles" class="btn btn-info text-white"><strong>Read more here</strong></a>
-          </ul>
-        </div>
+        <ul class="list-group list-group-flush">
+          <% @in_space["people"].each do |space| %>
+          <li class="list-group-item">
+            <p class="m-0"><%= space["name"] %> is on spacecraft <%= space["craft"] %></p>
+          </li>
+          <% end %>
+        </ul>
       </div>
     </div>
-  <div style="width: 70%; margin: 50px auto;">
     <div>
-      <h2 class="text-center" id="potd">Picture of the day!</h2>
-      <div class="card" >
-        <% if @media_type_is_video %>
-
-        <% else %>
-        <img class="card-img-top" src="<%= @nasa_info["url"] %>" alt="Card image cap" />
-        <% end %>
-        <h1 class="text-center border-bottom"><%= @nasa_info["title"] %></h1>
-        <p><%= @nasa_info["explanation"] %></p>
+      <div class="pod-card">
+        <div class="pod-card-image">
+          <% if @media_type_is_video %>
+          <% else %>
+            <%= image_tag @nasa_info["url"], class: "w-100" %>
+          <% end %>
+        </div>
+        <div class="pod-card-details p-2">
+          <h5 class="text-center">NASA Picture of the day - <%= @nasa_info["title"] %></h5>
+          <hr>
+          <p><%= @nasa_info["explanation"] %></p>
+        </div>
       </div>
     </div>
   </div>
+</div>
+<div class="mars-rover text-center mt-3">
+  <div><h3>Daily Mars Rover Image</h3></div>
+  <div><%= image_tag @mars_rover["img_src"] %></div>
 </div>
