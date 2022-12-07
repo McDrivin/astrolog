@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get 'nasa_picture/index'
   devise_for :users
-  # root to: "pages#home"
-  root 'nasa_picture#index'
+  root to: "pages#home"
+  # root 'nasa_picture#index'
   post "/search", to: "pages#search"
 
   resources :events, only: %i[index show] do
