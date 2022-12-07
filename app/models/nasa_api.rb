@@ -14,9 +14,9 @@ class NasaApi < ApplicationRecord
     JSON.parse request_to_nasa_api
   end
 
-  def self.article_api
-    url = "https://api.spaceflightnewsapi.net/v3/articles"
-    request_to_article_api = Net::HTTP.get(URI(url))
-    JSON.parse request_to_article_api
-  end
+  # def self.article_api
+  #   url = "https://api.spaceflightnewsapi.net/v3/articles"
+  #   request_to_article_api = Net::HTTP.get(URI(url))
+  #   JSON.parse request_to_article_api
+  # end
 end

@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   resources :launches, only: %i[index show] do
     get '/page/:page', action: :index, on: :collection
   end
-  resources :articles, only: %i[index show]
+  resources :articles, only: %i[index show] do
+    get '/page/:page', action: :index, on: :collection
+  end
 
   resources :topics do
     resources :posts, only: [:new, :create]

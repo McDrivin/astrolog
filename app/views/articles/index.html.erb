@@ -1,5 +1,7 @@
-<div class="container">
-  <h1> News Articles </h1>
+<div class="container text-center">
+  <hr>
+  <h1 class="fw-bold">NEWS ARTICLES</h1>
+  <hr>
 
 <form novalidate="novalidate" class="simple_form search" action="/articles" accept-charset="UTF-8" method="get">
   <div class="search-form-control form-group">
@@ -12,31 +14,17 @@
 
   <ul class="list-group">
     <% @articles.each do |article| %>
-      <div class="card-product mb-3">
+      <div class="wide-card mb-3">
         <%= image_tag article["imageUrl"].nil? ? "placeholder-image.png" : article["imageUrl"] %>
         <div class="wide-card-infos">
           <h2><%= article["title"] %></h2>
-          <h6><%= article["summary"] %></h6>
-          <%# <%= button_to "BUTTON: link version", users_path, :method => "get" %>
-          <%# <%= link_to "More info", article_path(["url"]), class: "btn btn-primary" %>
-          <%= link_to "More info", article_path(["url"]), class: "btn btn-primary" %>
+          <p><%= article["summary"] %></p>
+          <%= link_to "More info", article["url"], class: "btn btn-primary mt-2%", target: :_blank %>
         </div>
       </div>
     <% end %>
   </ul>
 </div>
-
-  <%# t.string "name"
-articles.each do |article|
-    Article.create(
-      id: article["id"]
-      title: article["title"]
-      url: article["url"]
-      imageUrl: article["imageUrl"]
-      newsSite: article["newsSite"]
-      summary: article["summary"]
-      publishedAt: article["publishedAt"]
-      updatedAt: article["updatedAt"]
-      featured: article["featured"]
-      launches: article["id"]["provider"]
-    )
+<div class="container mt-3">
+  <%= paginate @articles, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center" %>
+</div>
