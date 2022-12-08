@@ -1,5 +1,8 @@
-<div class="container">
-  <h1>Create new topic</h1>
+<div class="container mt-5 vh-100">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="m-0">Create new topic</h1>
+    <%= link_to "Back", topics_path, class: "btn btn-secondary mt-3" %>
+  </div>
   <%= simple_form_for @topic do |f| %>
     <%= f.input :title %>
     <%= f.input :description %>
