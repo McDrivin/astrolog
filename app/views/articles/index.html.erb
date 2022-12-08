@@ -2,16 +2,14 @@
   <hr>
   <h1 class="fw-bold">NEWS ARTICLES</h1>
   <hr>
-
-<form novalidate="novalidate" class="simple_form search mb-3" action="/articles" accept-charset="UTF-8" method="get">
-  <div class="search-form-control form-group">
-    <input class="form-control string required bg-white" type="text" name="query" id="search_query" value="<%= params[:query]   %>"/>
-    <button name="button" type="submit" class="btn btn-primary">
-      <i class="fas fa-search"></i> Search
-    </button>
-  </div>
-</form>
-
+  <form novalidate="novalidate" class="simple_form search mb-3" action="/articles" accept-charset="UTF-8" method="get">
+    <div class="search-form-control form-group">
+      <input class="form-control string required bg-white" type="text" name="query" id="search_query" value="<%= params[:query]   %>"/>
+      <button name="button" type="submit" class="btn btn-primary">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+  </form>
   <ul class="list-group">
     <% @articles.each do |article| %>
       <div class="wide-card mb-3">
@@ -19,7 +17,7 @@
         <div class="wide-card-infos">
           <h2><%= article["title"] %></h2>
           <p><%= article["summary"] %></p>
-          <%= link_to "More info", article["url"], class: "btn btn-primary mt-2%", target: :_blank %>
+          <%= link_to "More info", article["url"], class: "btn btn-primary mt-2", target: :_blank %>
         </div>
       </div>
     <% end %>

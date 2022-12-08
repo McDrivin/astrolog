@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   resources :astronauts, only: %i[index show] do
     get '/page/:page', action: :index, on: :collection
   end
-  resources :launches, only: %i[index show] do
+  resources :launches, only: %i[index] do
     get '/page/:page', action: :index, on: :collection
   end
-  resources :articles, only: %i[index show] do
+  resources :articles, only: %i[index] do
     get '/page/:page', action: :index, on: :collection
   end
 

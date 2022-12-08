@@ -1,1 +1,9 @@
-<%= render "form" %>
+<%= render "shared/breadcrumbs" %>
+<div class="container mt-5 vh-100">
+  <h1 class="m-0">New discussion</h1>
+  <%= simple_form_for @post do |f| %>
+    <%= f.input :title %>
+    <%= f.rich_text_area :content %>
+    <%= f.button :submit, class: "btn btn-primary w-100 mt-3" %>
+  <% end %>
+</div>

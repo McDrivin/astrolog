@@ -21,7 +21,25 @@ export default class extends Controller {
     var distance = this.countDownDate - now;
 
     if (distance <= 0) {
-      this.element.innerHTML = '00 : 00 : 00 : 00';
+      const html = `
+        <div class="d-flex justify-content-center">
+          <div class="text-center">
+            <h2>00</h2><p class="m-0">days</p>
+          </div>
+          <h2 class="mx-2">:</h2>
+          <div class="text-center">
+            <h2>00</h2><p class="m-0">hours</p>
+          </div>
+          <h2 class="mx-2">:</h2>
+          <div class="text-center">
+            <h2>00</h2><p class="m-0">mins</p>
+          </div>
+          <h2 class="mx-2">:</h2>
+          <div class="text-center">
+            <h2>00</h2><p class="m-0">secs</p>
+          </div>
+        </div>`;
+      this.element.innerHTML = html;
       return
     }
 
@@ -32,7 +50,25 @@ export default class extends Controller {
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Display the result in the element with id="demo"
-    this.element.innerHTML = this.pad(days) + " : " + this.pad(hours) + " : " + this.pad(minutes) + " : " + this.pad(seconds);
+    const html = `
+      <div class="d-flex justify-content-center">
+        <div class="text-center">
+          <h2>${this.pad(days)}</h2><p class="m-0">days</p>
+        </div>
+        <h2 class="mx-2">:</h2>
+        <div class="text-center">
+          <h2>${this.pad(hours)}</h2><p class="m-0">hours</p>
+        </div>
+        <h2 class="mx-2">:</h2>
+        <div class="text-center">
+          <h2>${this.pad(minutes)}</h2><p class="m-0">mins</p>
+        </div>
+        <h2 class="mx-2">:</h2>
+        <div class="text-center">
+          <h2>${this.pad(seconds)}</h2><p class="m-0">secs</p>
+        </div>
+      </div>`;
+    this.element.innerHTML = html;
 
     // If the count down is finished, write some text
     if (distance < 0) {
