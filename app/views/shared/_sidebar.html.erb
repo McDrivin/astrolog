@@ -1,0 +1,43 @@
+<%# news articles sidebar
+
+<%# <div class="sidebar"> %>
+  <div class="col-12 col-lg-3">
+  <h2>News</h2>
+  <!-- Page content -->
+    <ul class="list-group">
+    <% @articles.each do |article| %>
+        <div class="wide-card mb-3">
+          <%= image_tag article["imageUrl"].nil? ? "placeholder-image.png" : article["imageUrl"]
+          <div class="wide-card-infos">
+            <h3><%= article["title"] %></h2>
+            <p><%= article["summary"] %></p>
+          </div>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div> %>
+
+ <%# <%= 8.times do |article| %>
+
+
+<%# .sidebar {
+  height: 100%;
+  width: 150px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 40px;
+  background-color: lightblue;
+  }
+
+  .sidebar div {
+  padding: 8px;
+  font-size: 24px;
+  display: block;
+  }
+
+  .body-text {
+  margin-left: 150px;
+  font-size: 18px;
+  } %>
