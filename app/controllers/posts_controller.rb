@@ -1,14 +1,21 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :destroy, :edit, :update]
   def show
+    @topic = Topic.find(@post.topic_id)
     @user = User.find(@post.user_id)
     @message = Message.new
     @messages = Message.where(post_id: params[:id]).page params[:page]
+    add_breadcrumb "Home", topics_path
+    add_breadcrumb @topic.title, topic_path(@topic)
+    add_breadcrumb @post.title, post_path(@post)
   end
 
   def new
     @post = Post.new
     @topic = Topic.find(params[:topic_id])
+    add_breadcrumb "Home", topics_path
+    add_breadcrumb @topic.title, topic_path(@topic)
+    add_breadcrumb "New discussion", new_topic_post_path(@topic)
   end
 
   def create
@@ -24,6 +31,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @topic = Topic.find(@post.topic_id)
+    add_breadcrumb "Home", topics_path
+    add_breadcrumb @topic.title, topic_path(@topic)
+    add_breadcrumb @post.title, post_path(@post)
+    add_breadcrumb "Edit discussion", edit_post_path
   end
 
   def update

@@ -15,6 +15,12 @@ class MessagesController < ApplicationController
   end
 
   def edit
+    @post = Post.find(@message.post_id)
+    @topic = Topic.find(@post.topic_id)
+    add_breadcrumb "Home", topics_path
+    add_breadcrumb @topic.title, topic_path(@topic)
+    add_breadcrumb @post.title, post_path(@post)
+    add_breadcrumb "Edit reply", edit_message_path
   end
 
   def update

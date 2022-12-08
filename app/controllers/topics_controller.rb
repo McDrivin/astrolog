@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
     @topics = Topic.all
     @my_interests = TopicMember.where(user_id: current_user.id, role: 'member')
     @my_topics = TopicMember.where(user_id: current_user.id, role: 'creator')
-    # add_breadcrumb "Home", topics_path
+    add_breadcrumb "Home", topics_path
   end
 
   def show
@@ -13,12 +13,14 @@ class TopicsController < ApplicationController
     @creator = User.find(@topic.topic_members.find_by(role: 'creator').user_id)
     @posts = Post.where(topic_id: params[:id]).page params[:page]
     @post = Post.new
-    # add_breadcrumb "Home", topics_path
-    # add_breadcrumb @topic.title, topic_path(@topic)
+    add_breadcrumb "Home", topics_path
+    add_breadcrumb @topic.title, topic_path(@topic)
   end
 
   def new
     @topic = Topic.new
+    add_breadcrumb "Home", topics_path
+    add_breadcrumb "New topic", new_topic_path(@topic)
   end
 
   def create
