@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card-group mt-3 mb-3">
+    <div class="card" style="width: 18rem;">
+      <%= image_tag @astronaut.profile_image.nil? ? "placeholder-image.png" : @astronaut.profile_image %>
+    </div>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Some facts about <strong><%= @astronaut.name %></strong></h4>
+          <p class="card-text"><%= @astronaut.name %> was born on the <%= @astronaut.date_of_birth %></p>
+          <p class="card-text">They are of <%= @astronaut.nationality %> descent</p>
+          <p class="card-text"><%= @astronaut.status == "Active" ? "They are still working for #{@astronaut.agency}" : "They are no longer working" %> </p>
+          <p class="card-text">They were born on <%= @astronaut.date_of_birth %> </p>
+          <p class="card-text"><%= @astronaut.date_of_death.nil? ? "They are #{@astronaut.age} years old" : "They died at the age of #{@astronaut.age} years old on the #{@astronaut.date_of_death}" %> </p>
+          <h5 class="card-title"><strong>Bio:</strong></h5>
+          <p class="card-text"><%= @astronaut.bio %></p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>`
+      </div>
+    </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title text-center">Socials:</h5>
+      <div class="col item social text-center justify-content-between"></i></a><a href=<%=@astronaut.twitter %>><i class="fa-brands fa-twitter"></i></a><a style="padding-left:25px;" href=<%=@astronaut.instagram %>><i class="fa-brands fa-instagram"></i></a><a style="padding-left:25px;" href=<%=@astronaut.wiki %> ><i class="fa-brands fa-wikipedia-w"></i></a></div>
+    </div>
+  </div>
+</div>

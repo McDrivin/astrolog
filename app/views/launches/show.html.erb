@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="card-group mt-3 mb-3">
+    <div class="card" style="width: 18rem;">
+      <%= image_tag "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s-l+000(#{@launch.pad_lng},#{@launch.pad_lat})/#{@launch.pad_lng},#{@launch.pad_lat},3.6,0,0/400x400?access_token=#{ENV["MAPBOX_API_KEY"]}" %>
+    </div>
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title"><strong><%= @launch.name %></strong></h2>
+          <h4 class="card-text"><%= @launch.agenc %></h4>
+          <h5 class="card-text"><%= @launch.rocket %></strong></h5>
+          <p class="card-text"><%= @launch.mission_desc %></p>
+          <p class="card-text">Launch Probabiility: <%= @launch.probability %><strong>% </strong></p>
+
+            <h2 data-controller="countdown" data-countdown-date-value="<%= @launch.window_start.to_s %>"></h2>
+          <p class="card-text"><small class="text-muted">Last updated 20 days ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<%#
+
+
+
+launches.each do |launch|
+  Launch.create(
+    name: launch["name"],
+    status: launch["status"] ? launch["status"]["name"] : nil,
+    status_desc: launch["status"] ? launch["status"]["description"] : nil,
+    window_start: launch["window_start"],
+    window_end: launch["window_end"],
+    probability: launch["probability"],
+    agenc: launch["launch_service_provider"] ? launch["launch_service_provider"]["name"] : nil,
+    rocket: launch["rocket"] ? launch["rocket"]["configuration"]["name"] : nil,
+    mission: launch["mission"] ? launch["mission"]["name"] : nil,
+    pad: launch["pad"] ? launch["pad"]["name"] : nil,
+    pad_lat: launch["pad"] ? launch["pad"]["latitude"] : nil,
+    pad_lng: launch["pad"] ? launch["pad"]["longitude"] : nil
+  )
+end %>

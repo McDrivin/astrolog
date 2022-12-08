@@ -39,7 +39,15 @@ astronauts.each do |astronaut|
     name: astronaut["name"],
     status: astronaut["status"] ? astronaut["status"]["name"] : nil,
     agency: astronaut["agency"] ? astronaut["agency"]["name"] : nil,
-    profile_image: astronaut["profile_image"]
+    profile_image: astronaut["profile_image"],
+    age: astronaut["age"],
+    date_of_birth: astronaut["date_of_birth"],
+    date_of_death: astronaut["date_of_death"],
+    nationality: astronaut["nationality"],
+    twitter: astronaut["twitter"],
+    instagram: astronaut["instagram"],
+    bio: astronaut["bio"],
+    wiki: astronaut["wiki"]
   )
 end
 
