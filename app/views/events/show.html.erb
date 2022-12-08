@@ -1,22 +1,29 @@
 <div class="container">
-  <h1 class="mt-3"><%= @event.name %></h1>
-  <div class="card w-100">
-    <%= image_tag @event.feature_image, class: "card-img-top" %>
-    <div class="card-body">
-      <p class="card-text"><%= @event.description %></p>
-      <%= link_to "News", "#{@event.news_url}", class: "btn btn-primary w-100" %>
+  <div class="row">
+    <h1 class="mt-3"><%= @event.name %></h1>
+    <div class="col-6 mb-3">
+      <div class="card w-100">
+        <%= image_tag @event.feature_image, class: "card-img-top" %>
+        <div class="card-body">
+          <p class="card-text"><%= @event.description %></p>
+          <%= link_to "News", "#{@event.news_url}", class: "btn btn-primary w-100" %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div class="container my-3">
-<h2>Watch live</h2>
-  <div class="ratio ratio-16x9">
-    <iframe
-    style="border-radius: 5px"
-      src="<%= @embed_video %>"
-      allowfullscreen
-      allowtransparency
-      allow="autoplay"
-    ></iframe>
+    <div class="col-6 mb-3">
+      <h5>Watch live</h5>
+      <div class="ratio ratio-16x9">
+        <iframe
+        style="border-radius: 5px"
+          src="<%= @embed_video %>"
+          allowfullscreen
+          allowtransparency
+          allow="autoplay"
+        ></iframe>
+      </div>
+      <div class="map-box my-3">
+        <%= image_tag "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s-l+000(#{@lng},#{@lat})/#{@lng},#{@lat},3.6,0,0/600x200?access_token=#{ENV["MAPBOX_API_KEY"]}" %>
+      </div>
+    </div>
   </div>
 </div>
