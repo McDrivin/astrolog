@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'nasa_picture/index'
   devise_for :users
   root to: "pages#home"
   post "/search", to: "pages#search"
