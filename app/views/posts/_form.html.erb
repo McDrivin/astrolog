@@ -1,8 +1,5 @@
 <div class="container mt-5 vh-100">
-  <div class="d-flex justify-content-between align-items-center">
-    <h1 class="m-0">New discussion</h1>
-    <%= link_to "Back", topic_path(@topic), class: "btn btn-secondary mt-3" %>
-  </div>
+  <h1 class="m-0">New discussion</h1>
   <%= simple_form_for [@topic, @post] do |f| %>
     <%= f.input :title %>
     <%= f.rich_text_area :content %>

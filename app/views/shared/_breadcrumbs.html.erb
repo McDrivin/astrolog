@@ -1,0 +1,8 @@
+<%= render "shared/breadcrumbs" %>
+<div class="container my-3">
+  <nav style="--bs-breadcrumb-divider: ' > ';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= render_breadcrumbs :separator => " > " %></li>
+    </ol>
+  </nav>
+</div>

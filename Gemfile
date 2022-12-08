@@ -55,6 +55,7 @@ gem "pg_search"
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
 gem "cloudinary"
+gem "breadcrumbs_on_rails"
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
