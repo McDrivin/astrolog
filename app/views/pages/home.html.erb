@@ -11,11 +11,11 @@
     <div class="in-space">
       <div class='text-center card'>
         <div class="card-header">
-          <%= @in_space["people"].size %> humans currently in space
+          Fun fact: There are <%= @in_space["people"].size %> humans currently in space
         </div>
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-item-primary">
           <% @in_space["people"].each do |space| %>
-          <li class="list-group-item">
+          <li class="list-group-item ">
             <p class="m-0"><%= space["name"] %> is on space station <%= space["craft"] %></p>
           </li>
           <% end %>
@@ -39,7 +39,7 @@
     </div>
   </div>
 </div>
-<div class="mars-rover text-center mt-3">
+<div class="mars-rover text-center mx-3 mt-3 mb-3">
   <div><h3>Daily Mars Rover Image</h3></div>
   <div><%= image_tag @mars_rover["img_src"] %></div>
 </div>
