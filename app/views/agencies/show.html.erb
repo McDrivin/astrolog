@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="card-group mt-3 mb-3">
+    <div class="card" style="width: 18rem;">
+      <%= image_tag @agency.image_url.nil? ? "placeholder-image.png" : @agency.image_url %>
+    </div>
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title"><strong><%= @agency.name %></strong></h2>
+          <h3 class="card-text"><%= @agency.name %> was founded on <%= @agency.founding_year %></h3>
+          <h4 class="card-text"><%= @agency.name %> is from <strong><%= @agency.country_code %></strong></h4>
+           <p class="card-text"><%= @agency.description %></p>
+           <p class="card-text"><strong><%= @agency.spacecraft %></strong></p>
+          <p class="card-text"><small class="text-muted">Last updated 20 days ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%# agencies.each do |agency|
+  Agency.create(
+    name: agency["name"],
+    agency_type: agency["type"],
+    country_code: agency["country_code"],
+    description: agency["description"],
+    founding_year: agency["founding_year"],
+    spacecraft: agency["spacecraft"],
+    image_url: agency["image_url"],
+    logo_url: agency["logo_url"]
+  )
+end
+
+astronauts.each do |astrona %>
