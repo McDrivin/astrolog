@@ -10,18 +10,18 @@
         <% end %>
         <p class="post-username"><%= @user.username %></p>
       </div>
-      <div class="m-2 post-content">
+      <div class="post-content">
         <h4 class="post-title"><%= @post.title %></h4>
         <div><%= @post.content %></div>
-        <div class="p-2 post-date d-flex align-items-center justify-content-end">
+        <div class="pt-4 post-date d-flex align-items-center justify-content-end">
           <% if @post.user == current_user %>
-            <p class="m-0">Posted on: <%= @post.created_at.strftime('%B %e %Y at %H:%I %p') %> | Updated on: <%= @post.updated_at.strftime('%B %e %Y at %I:%M %p') %></p>
+            <p class="m-0">Posted on: <%= @post.created_at.strftime('%B %e %Y at %H:%I %p') %></p>
             <div class="links ms-2">
-              <%= link_to "Edit", edit_post_path, class: "btn btn-outline-primary btn-sm" %>
-              <%= link_to "Delete", post_path(@post), data: {turbo_method: :delete}, class: "btn btn-outline-danger btn-sm" %>
+              <%= link_to edit_post_path, class: "btn-edit" do %><i class="fa-solid fa-pen-to-square"></i><% end %>
+              <%= link_to post_path(@post), data: {turbo_method: :delete}, class: "btn-delete" do %><i class="fa-solid fa-trash-can"></i><% end %>
             </div>
           <% else %>
-            <p class="m-0">Posted on: <%= @post.created_at.strftime('%B %e %Y at %H:%I %p') %> | Updated on: <%= @post.updated_at.strftime('%B %e %Y at %I:%M %p') %></p>
+            <p class="m-0">Posted on: <%= @post.created_at.strftime('%B %e %Y at %H:%I %p') %></p>
           <% end %>
         </div>
       </div>
@@ -29,8 +29,15 @@
   </div>
 </div>
 <div class=" container">
+  <h4 class="ms-5 mt-4 mb-2 d-flex align-items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="height: 25px; width: 25px; margin-right: 5px; opacity: 0.8;">
+      <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 00-1.032-.211 50.89 50.89 0 00-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 002.433 3.984L7.28 21.53A.75.75 0 016 21v-4.03a48.527 48.527 0 01-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979z" />
+      <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 001.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0015.75 7.5z" />
+    </svg>
+    Replies
+  </h4>
   <% @messages.each do |message| %>
-    <div class="post mt-2 p-3">
+    <div class="post mx-5 mt-2 p-3">
       <div class="post-body">
         <div class="post-user">
           <% if User.find(message.user_id).photo.attached? %>
@@ -40,19 +47,19 @@
           <% end %>
           <p class="post-username"><%= User.find(message.user_id).username %></p>
         </div>
-        <div class="m-2 post-content">
+        <div class="post-content">
           <div>
             <%= message.content %>
           </div>
-          <div class="p-2 post-date d-flex align-items-center justify-content-end">
+          <div class="pt-2 post-date d-flex align-items-center justify-content-end">
             <% if message.user == current_user %>
-            <p class="m-0"> Replied on: <%= message.created_at.strftime('%B %e %Y at %I:%M %p') %> | Updated on: <%= message.updated_at.strftime('%B %e %Y at %I:%M %p') %></p>
+            <p class="m-0"> Replied on: <%= message.created_at.strftime('%B %e %Y at %I:%M %p') %></p>
               <div class="links ms-2">
-                <%= link_to "Edit", edit_message_path(message), class: "btn btn-outline-primary btn-sm" %>
-                <%= link_to "Delete", message_path(message), data: {turbo_method: :delete}, class: "btn btn-outline-danger btn-sm" %>
+                <%= link_to edit_message_path(message), class: "btn-edit" do %><i class="fa-solid fa-pen-to-square"></i><% end %>
+                <%= link_to message_path(message), data: {turbo_method: :delete}, class: "btn-delete" do %><i class="fa-solid fa-trash-can"></i><% end %>
               </div>
             <% else %>
-              <p class="m-0">Replied on: <%= message.created_at.strftime('%B %e %Y at %I:%M %p') %> | Updated on: <%= message.updated_at.strftime('%B %e %Y at %I:%M %p') %></p>
+              <p class="m-0">Replied on: <%= message.created_at.strftime('%B %e %Y at %I:%M %p') %></p>
             <% end %>
           </div>
         </div>
@@ -64,7 +71,7 @@
   <%= paginate @messages, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center" %>
 </div>
 <div class="container">
-  <div class="my-3 p-3 add-reply">
+  <div class="mx-5 my-3 p-3 add-reply">
     <%= simple_form_for [@post, @message] do |f| %>
       <%= f.input :content, label: "Add a reply" %>
       <%= f.submit "Send", class: "btn btn-primary" %>
