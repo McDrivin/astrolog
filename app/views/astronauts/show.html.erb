@@ -6,10 +6,9 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Some facts about <strong><%= @astronaut.name %></strong></h4>
-          <p class="card-text"><% @astronaut.name %> was born on the <%= @astronaut.date_of_birth.to_date.strftime('%e %m %Y') %></p>
+          <p class="card-text">They were born on <%= @astronaut.date_of_birth.to_date.strftime('%e/%m/%Y') %> </p>
           <p class="card-text">They are of <%= @astronaut.nationality %> descent</p>
           <p class="card-text"><%= @astronaut.status == "Active" ? "They are still working for #{@astronaut.agency}" : "They are no longer working" %> </p>
-          <p class="card-text">They were born on <%= @astronaut.date_of_birth.to_date.strftime('%e/%m/%Y') %> </p>
           <p class="card-text"><%= @astronaut.date_of_death.nil? ? "They are #{@astronaut.age} years old" : "They died at the age of #{@astronaut.age} years old on the #{@astronaut.date_of_death.to_date.strftime('%e/%m/%Y')}" %> </p>
           <h5 class="card-title"><strong>Bio:</strong></h5>
           <p class="card-text"><%= @astronaut.bio %></p>
