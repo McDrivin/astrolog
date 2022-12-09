@@ -7,7 +7,7 @@ def parse_data(end_point)
   base_url = "https://lldev.thespacedevs.com/2.2.0/#{end_point}"
   count = (JSON.parse(URI.open(base_url).read)["count"] / 10)
   puts "Fetching #{end_point} for #{count} times..."
-  2.times do |index|
+  count.times do |index|
     url = "#{base_url}?limit=10&offset=#{index * 10}"
     puts "Fetching from url: #{url}"
     data = JSON.parse(URI.open(url).read)
@@ -104,42 +104,42 @@ articles.each do |article|
   )
 end
 
-puts "Seeding community..."
-emails = ["test@test.com", "user@gmail.com"]
-2.times do |i|
-  User.create(
-    username: Faker::Internet.username,
-    email: emails[i],
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    password: 'secret'
-  )
-end
+# puts "Seeding community..."
+# emails = ["test@test.com", "user@gmail.com"]
+# 2.times do |i|
+#   User.create(
+#     username: Faker::Internet.username,
+#     email: emails[i],
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     password: 'secret'
+#   )
+# end
 
-5.times do |i|
-  topic = Topic.create(title: "This is topic #{i + 1}", description: Faker::Lorem.sentence(word_count: 3))
-  topic.topic_members.create(role: 'creator', user: User.find(rand(1..2)))
-  # topic.save
-end
+# 5.times do |i|
+#   topic = Topic.create(title: "This is topic #{i + 1}", description: Faker::Lorem.sentence(word_count: 3))
+#   topic.topic_members.create(role: 'creator', user: User.find(rand(1..2)))
+#   # topic.save
+# end
 
-Topic.all.each do |topic|
-  10.times do |j|
-    Post.create(
-      title: "This is the post #{j + 1} of topic #{topic.id}",
-      content: "This is content of post #{j + 1} of topic #{topic.id}",
-      user: User.find(rand(1..2)),
-      topic: topic
-    )
-  end
+# Topic.all.each do |topic|
+#   10.times do |j|
+#     Post.create(
+#       title: "This is the post #{j + 1} of topic #{topic.id}",
+#       content: "This is content of post #{j + 1} of topic #{topic.id}",
+#       user: User.find(rand(1..2)),
+#       topic: topic
+#     )
+#   end
 
-  Post.all.each do |post|
-    5.times do |j|
-      Message.create(
-        content: "This is message #{j + 1} of post #{post.id}",
-        post: post,
-        user: User.find(rand(1..2))
-      )
-    end
-  end
-end
-puts "Seeding successfully finished!"
+#   Post.all.each do |post|
+#     5.times do |j|
+#       Message.create(
+#         content: "This is message #{j + 1} of post #{post.id}",
+#         post: post,
+#         user: User.find(rand(1..2))
+#       )
+#     end
+#   end
+# end
+# puts "Seeding successfully finished!"

@@ -1,6 +1,7 @@
+<%= render "shared/breadcrumbs" %>
 <div class="container  mt-5 vh-100">
   <div class="mt-3 p-3 add-reply">
-    <%= simple_form_for [@post, @message] do |f| %>
+    <%= simple_form_for @message do |f| %>
       <%= f.input :content, label: "Add a reply" %>
       <%= f.submit "Send", class: "btn btn-primary" %>
     <% end %>

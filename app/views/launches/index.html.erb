@@ -14,15 +14,14 @@
     <% @launches.each do |launch| %>
       <div class="wide-card mb-3">
         <%= image_tag "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s-l+000(#{launch.pad_lng},#{launch.pad_lat})/#{launch.pad_lng},#{launch.pad_lat},3.6,0,0/400x400?access_token=#{ENV["MAPBOX_API_KEY"]}" %>
-          <div class="wide-card-infos">
-            <h2><%= launch.name %></h2>
-            <p><%= launch.agenc %> | <%= launch.rocket %></p>
-            <p><%= launch.mission_desc %></p>
-            <h2 data-controller="countdown" data-countdown-date-value="<%= launch.window_start.to_s %>"></h2>
-            <%= link_to "More info", launch_path(launch), class: "btn btn-primary mt-2" %>
-          </div>
+        <div class="wide-card-infos">
+          <h2><%= launch.name %></h2>
+          <p>Rocket: <%= launch.rocket %> | Status: <%= launch.status %> | Agency: <%= launch.agenc %></p>
+          <p>Mission: <%= launch.mission %></p>
+          <h2 class="my-2" data-controller="countdown" data-countdown-date-value="<%= launch.window_start.to_s %>"></h2>
         </div>
-      <% end %>
+      </div>
+    <% end %>
     </ul>
 </div>
 <div class="container my-3">
